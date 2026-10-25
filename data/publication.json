@@ -1,0 +1,403 @@
+{
+  "schema_version": "1.0",
+  "publication": {
+    "id": "v0002-73c6838950",
+    "version": 2,
+    "status": "prepared",
+    "prepared_at": "2026-10-25T19:07:49.386269Z",
+    "published_at": null
+  },
+  "laboratory": {
+    "title": "Laboratorio de Decisiones con IA",
+    "subtitle": "Diplomado UDD | Exploración de evidencia, análisis y toma de decisiones"
+  },
+  "activities": [
+    {
+      "activity_number": 1,
+      "name": "Ecos Digitales: Agentes de IA y autonomía en el trabajo",
+      "description": "Ejercicio Ecos Digitales con 111 comentarios públicos de CNBC y BBC, una ficha ejecutiva y evidencias anexas.",
+      "objective": "Analizar evidencia textual con IA y priorizar una iniciativa inicial de 60 días mediante juicio humano y trazabilidad.",
+      "results": [
+        {
+          "result_id": "resultado-586fef516e166e7a",
+          "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 6,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "CNBC. Evidencia: un comentarista probaría el agente con 5 % o 10 % de su portafolio (CNBC-044). Interpretación: la disposición favorable aparece con exposición acotada",
+              "category": "hallazgo_1",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: los comentarios no rechazan la asistencia, sino la delegación autónoma sin responsable ni límites (CNBC-001; BBC-015). Hipótesis no comprobada: en tareas internas y reversibles, con revisión humana y un responsable por uso, el agente reduce el tiempo neto por tarea sin incidentes; el piloto la pone a prueba. Límite: son 111 opiniones públicas sobre trading y un incidente de ciberseguridad; no constituyen un diagnóstico interno ni una muestra representativa, y el corpus no contiene datos de productividad.",
+              "limitations": "son 111 opiniones públicas sobre trading y un incidente de ciberseguridad; no constituyen un diagnóstico interno ni una muestra representativa, y el corpus no contiene datos de productividad."
+            },
+            {
+              "description": "BBC News. Evidencia: un comentario pide especificar la responsabilidad —quién, qué, cuándo, dónde y cómo— porque «si todos somos vagamente responsables, nadie lo es» (BBC-022). Interpretación: preocupa quién responde ante los errores de un agente. Evidencia contraria: según BBC-023, en una prueba sin acceso a internet el agente encontró un camino. Interpretación: acotar el piloto no basta si no se definen antes permisos y accesos",
+              "category": "hallazgo_2",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: los comentarios no rechazan la asistencia, sino la delegación autónoma sin responsable ni límites (CNBC-001; BBC-015). Hipótesis no comprobada: en tareas internas y reversibles, con revisión humana y un responsable por uso, el agente reduce el tiempo neto por tarea sin incidentes; el piloto la pone a prueba. Límite: son 111 opiniones públicas sobre trading y un incidente de ciberseguridad; no constituyen un diagnóstico interno ni una muestra representativa, y el corpus no contiene datos de productividad.",
+              "limitations": "son 111 opiniones públicas sobre trading y un incidente de ciberseguridad; no constituyen un diagnóstico interno ni una muestra representativa, y el corpus no contiene datos de productividad."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-044",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-023",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-001",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-015",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-021",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "C",
+              "recommendation": "C es preferible porque es la única alternativa que produce, en 60 días, evidencia interna de valor y riesgo bajo las condiciones que el corpus asocia a la aceptación de agentes (exposición acotada, reglas y control humano), mientras B se apoya sobre todo en un incidente de laboratorio poco transferible y A tiene base mínima (4 comentarios, una fuente). Condición de revisión: días 30 y 60. El piloto continúa si el 100 % de las salidas tiene revisión humana y responsable identificado, no hay incidentes de exposición ni acciones fuera de permisos, y el tiempo neto por tarea es igual o menor que la línea base en más de la mitad de las tareas. Un incidente lo suspende de inmediato. Riesgo residual: incidente de confidencialidad; sesgo de selección y efecto novedad.",
+              "justification": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: los comentarios no rechazan la asistencia, sino la delegación autónoma sin responsable ni límites (CNBC-001; BBC-015). Hipótesis no comprobada: en tareas internas y reversibles, con revisión humana y un responsable por uso, el agente reduce el tiempo neto por tarea sin incidentes; el piloto la pone a prueba. Límite: son 111 opiniones públicas sobre trading y un incidente de ciberseguridad; no constituyen un diagnóstico interno ni una muestra representativa, y el corpus no contiene datos de productividad.",
+              "risks": "incidente de confidencialidad; sesgo de selección y efecto novedad.",
+              "review_conditions": "días 30 y 60. El piloto continúa si el 100 % de las salidas tiene revisión humana y responsable identificado, no hay incidentes de exposición ni acciones fuera de permisos, y el tiempo neto por tarea es igual o menor que la línea base en más de la mitad de las tareas. Un incidente lo suspende de inmediato.",
+              "missing_data": "el inventario del uso actual de IA y la clasificación de la información de clientes. Si hay uso no autorizado extendido o datos muy sensibles, la prioridad pasa a B. Correcciones propuestas con apoyo de IA y comprobadas por el equipo en el CSV."
+            }
+          ]
+        },
+        {
+          "result_id": "resultado-13adb1bd2d41b549",
+          "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 11,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Responsabilidad sin dueño (ambos medios): se pide definir quién responde cuando el agente actúa: BBC-022 (\"If we're all vaguely responsible, no one is\"), BBC-066 y CNBC-039 (\"Who do I sue when the AI agent loses my money?\")",
+              "category": "hallazgo_1",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: la desconfianza se concentra en la falta de control y de responsables más que en la falta de conocimiento. Límite: los comentarios tratan trading personal y un incidente de ciberseguridad en un laboratorio, no productividad. Son opiniones no representativas, con humor y spam (CNBC-011, excluido). Hipótesis no comprobada: que el personal interno comparta esa desconfianza y que un marco de permisos la reduzca más que una capacitación. Contraevidencia: BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos; CNBC-044 acepta probar a escala acotada (favorece C).",
+              "limitations": "los comentarios tratan trading personal y un incidente de ciberseguridad en un laboratorio, no productividad. Son opiniones no representativas, con humor y spam (CNBC-011, excluido)."
+            },
+            {
+              "description": "Límites antes de la autonomía: lo difícil no es el modelo, sino fijar permisos y el manejo de errores: CNBC-019 (\"the AI is rarely the hard part\"; el autor declara construir estos sistemas), CNBC-057 y BBC-047 (\"clear guard rails… before that happens\")",
+              "category": "hallazgo_2",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: la desconfianza se concentra en la falta de control y de responsables más que en la falta de conocimiento. Límite: los comentarios tratan trading personal y un incidente de ciberseguridad en un laboratorio, no productividad. Son opiniones no representativas, con humor y spam (CNBC-011, excluido). Hipótesis no comprobada: que el personal interno comparta esa desconfianza y que un marco de permisos la reduzca más que una capacitación. Contraevidencia: BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos; CNBC-044 acepta probar a escala acotada (favorece C).",
+              "limitations": "los comentarios tratan trading personal y un incidente de ciberseguridad en un laboratorio, no productividad. Son opiniones no representativas, con humor y spam (CNBC-011, excluido)."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "excerpt": "If we're all vaguely responsible, no one is",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-066",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-039",
+              "excerpt": "Who do I sue when the AI agent loses my money?",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-019",
+              "excerpt": "the AI is rarely the hard part",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-047",
+              "excerpt": "clear guard rails… before that happens",
+              "verification": "fragmento_no_encontrado"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-011",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-060",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-072",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-044",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-001",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "Elegimos B. La preocupación que cruza ambas fuentes es quién responde y con qué límites actúa un agente. A no resuelve esa pregunta, y C sin permisos ni responsables reproduciría el riesgo que señalan los comentarios. En 60 días: matriz de permisos (leer, proponer, ejecutar), responsables nominados, registro y reversión, criterios de escalamiento y diseño del piloto C. Revisión al día 30.",
+              "justification": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: la desconfianza se concentra en la falta de control y de responsables más que en la falta de conocimiento. Límite: los comentarios tratan trading personal y un incidente de ciberseguridad en un laboratorio, no productividad. Son opiniones no representativas, con humor y spam (CNBC-011, excluido). Hipótesis no comprobada: que el personal interno comparta esa desconfianza y que un marco de permisos la reduzca más que una capacitación. Contraevidencia: BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos; CNBC-044 acepta probar a escala acotada (favorece C).",
+              "missing_data": "si ya existe una política interna de permisos y responsables de IA, pasaríamos a C."
+            }
+          ]
+        },
+        {
+          "result_id": "resultado-94e973e11e1d3974",
+          "group": "Grupo 2",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 6,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Responsabilidad y límites. BBC-022 pide precisar quién responde, de qué, cuándo, dónde y cómo; CNBC-019 describe límites de exposición y respuesta ante fallas. Este autor declara interés comercial. Son opiniones, no una determinación jurídica",
+              "category": "hallazgo_1",
+              "interpretation": "Interpretación: los registros seleccionados justifican evaluar controles previos. BBC trata ciberseguridad y CNBC, trading; el contraste mezcla fuente y tema y no demuestra productividad en servicios profesionales. Hipótesis: procedimientos, responsables y registros podrían reducir usos indebidos; debe evaluarse con datos internos. No conocemos la suficiencia de los controles ni las competencias, incidentes o línea base de productividad. Acción propuesta: Gerencia aprueba el marco y designa al dueño del proceso; este define ejecutor, autorizador y supervisor. Exigir procedimientos, límites y registros de qué se hizo, cuándo, por quién y quién autorizó, con revisión y detención humana. Límites y riesgos: muestra no representativa; los “me gusta” no validan opiniones. B puede burocratizar; A sin reglas deja permisos indefinidos; C sin controles puede ampliar errores. No se verificaron externamente ganancias, incidentes ni acusaciones."
+            },
+            {
+              "description": "Fiabilidad y datos. CNBC-001 critica con una metáfora la delegación del control; CNBC-003 teme que se vendan datos y se utilicen contra el usuario. No prueban fallas o venta de datos ni una opinión mayoritaria. Matiz contrario a B: CNBC-041 afirma mejores resultados con IA y BBC-064 atribuye el relato de riesgo a marketing. Ninguna afirmación está comprobada; ambas evitan una lectura solo cautelosa",
+              "category": "hallazgo_2",
+              "interpretation": "Interpretación: los registros seleccionados justifican evaluar controles previos. BBC trata ciberseguridad y CNBC, trading; el contraste mezcla fuente y tema y no demuestra productividad en servicios profesionales. Hipótesis: procedimientos, responsables y registros podrían reducir usos indebidos; debe evaluarse con datos internos. No conocemos la suficiencia de los controles ni las competencias, incidentes o línea base de productividad. Acción propuesta: Gerencia aprueba el marco y designa al dueño del proceso; este define ejecutor, autorizador y supervisor. Exigir procedimientos, límites y registros de qué se hizo, cuándo, por quién y quién autorizó, con revisión y detención humana. Límites y riesgos: muestra no representativa; los “me gusta” no validan opiniones. B puede burocratizar; A sin reglas deja permisos indefinidos; C sin controles puede ampliar errores. No se verificaron externamente ganancias, incidentes ni acusaciones."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "excerpt": "Responsibility should be specified who, what, when, where, and how.",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-019",
+              "excerpt": "max position size, what it does when the data feed goes quiet",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-001",
+              "excerpt": "trusting the steering wheel to a hallucinating parrot",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-003",
+              "excerpt": "They will sell your agentic data to institutions",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-041",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-064",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "Elegimos B) Uso responsable de la IA para definir procedimientos, responsabilidades y autorizaciones antes de ampliar la automatización; A enseñará esas reglas y C medirá productividad bajo controles. La recomendación es preliminar, con confianza media-baja y sujeta al diagnóstico interno.",
+              "justification": "Interpretación: los registros seleccionados justifican evaluar controles previos. BBC trata ciberseguridad y CNBC, trading; el contraste mezcla fuente y tema y no demuestra productividad en servicios profesionales. Hipótesis: procedimientos, responsables y registros podrían reducir usos indebidos; debe evaluarse con datos internos. No conocemos la suficiencia de los controles ni las competencias, incidentes o línea base de productividad. Acción propuesta: Gerencia aprueba el marco y designa al dueño del proceso; este define ejecutor, autorizador y supervisor. Exigir procedimientos, límites y registros de qué se hizo, cuándo, por quién y quién autorizó, con revisión y detención humana. Límites y riesgos: muestra no representativa; los “me gusta” no validan opiniones. B puede burocratizar; A sin reglas deja permisos indefinidos; C sin controles puede ampliar errores. No se verificaron externamente ganancias, incidentes ni acusaciones.",
+              "review_conditions": "Gerencia revisará la propuesta al día 30 y al día 60. Si existen controles aplicados y suficientes, tarea delimitada y línea base, priorizar C; si hay brechas de competencias, reforzar A. Son condiciones propuestas para validar internamente."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "activity_number": 2,
+      "name": "Comunicar Hallazgos con Evidencia",
+      "description": "Ficha de comunicación e infografía de dos páginas para una de cuatro audiencias asignadas.",
+      "objective": "Transformar hallazgos verificados de Ecos Digitales en una infografía ejecutiva adaptada a una audiencia asignada.",
+      "results": [
+        {
+          "result_id": "resultado-194962d9f7617ac3",
+          "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 8,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Responsabilidad sin dueño (ambos medios): en finanzas y en seguridad se repite la pregunta de quién responde cuando el agente actúa («If we're all vaguely responsible, no one is»; «Who do I sue when the AI agent loses my money?»).",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de dar autonomía a los agentes de IA, definamos quién responde y qué pueden hacer: priorizar B (Uso responsable) durante 60 días, con revisión al día 30 y un piloto C acotado que parte sólo si el marco queda aprobado.",
+              "limitations": "BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos: baja la urgencia de la «pérdida de control», no la de definir responsables. CNBC-044 está dispuesto a probar a pequeña escala (5–10 %), lo que favorece C; lo usamos como condición de revisión. Son opiniones sobre trading y ciberseguridad, no sobre productividad, y no son representativas."
+            },
+            {
+              "description": "Límites antes de la autonomía (ambos medios): lo difícil no es el modelo, sino fijar permisos, umbrales y manejo de errores («the AI is rarely the hard part»; «clear guard rails… before that happens»). CNBC-019 tiene interés declarado: su autor construye estos sistemas.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de dar autonomía a los agentes de IA, definamos quién responde y qué pueden hacer: priorizar B (Uso responsable) durante 60 días, con revisión al día 30 y un piloto C acotado que parte sólo si el marco queda aprobado.",
+              "limitations": "No sabemos si la organización ya tiene una política de permisos y responsables de IA (si existe, pasaríamos a C) ni cuánto comprende el personal los límites de los agentes (si es baja, reforzaríamos con A). Faltan también el uso actual de IA, las tareas candidatas y los requisitos regulatorios y de clientes. Hipótesis no comprobada: la resistencia interna se debe a falta de control y no de conocimiento."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-066",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-039",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-006",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-019",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-047",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-059",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "Aprobar B por 60 días: matriz de permisos (leer, proponer, ejecutar), responsables nominados, registro de acciones y reversión, criterios de escalamiento y diseño del piloto C. Revisión al día 30: si la matriz y los responsables están aprobados, iniciar el piloto C acotado. Al comité se le pide aprobar B, nominar responsables y encargar un diagnóstico interno. Riesgo residual: que B se perciba como burocracia y que haya uso no autorizado de IA mientras tanto.",
+              "justification": "Antes de dar autonomía a los agentes de IA, definamos quién responde y qué pueden hacer: priorizar B (Uso responsable) durante 60 días, con revisión al día 30 y un piloto C acotado que parte sólo si el marco queda aprobado.",
+              "risks": "BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos: baja la urgencia de la «pérdida de control», no la de definir responsables. CNBC-044 está dispuesto a probar a pequeña escala (5–10 %), lo que favorece C; lo usamos como condición de revisión. Son opiniones sobre trading y ciberseguridad, no sobre productividad, y no son representativas.",
+              "review_conditions": "Claude (Anthropic, claude-opus-5-5) para el análisis CIRC del corpus y la infografía. Corrección humana: verificamos 6 códigos contra el CSV; los likes no se usan como peso (CNBC-001 = 533; mediana CNBC = 1); el incidente BBC no se trata como hecho; CNBC-011 se excluye por spam. En la infografía, el gráfico se rotula como conteo de comentarios citados, no como prevalencia. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar.",
+              "missing_data": "No sabemos si la organización ya tiene una política de permisos y responsables de IA (si existe, pasaríamos a C) ni cuánto comprende el personal los límites de los agentes (si es baja, reforzaríamos con A). Faltan también el uso actual de IA, las tareas candidatas y los requisitos regulatorios y de clientes. Hipótesis no comprobada: la resistencia interna se debe a falta de control y no de conocimiento."
+            }
+          ],
+          "activity_data": {
+            "audience": "comite_directivo",
+            "audience_family": "comite_directivo",
+            "alternative": "B",
+            "central_message": "Antes de dar autonomía a los agentes de IA, definamos quién responde y qué pueden hacer: priorizar B (Uso responsable) durante 60 días, con revisión al día 30 y un piloto C acotado que parte sólo si el marco queda aprobado.",
+            "finding_1": "Responsabilidad sin dueño (ambos medios): en finanzas y en seguridad se repite la pregunta de quién responde cuando el agente actúa («If we're all vaguely responsible, no one is»; «Who do I sue when the AI agent loses my money?»).",
+            "references_1": [
+              "BBC-022",
+              "BBC-066",
+              "CNBC-039",
+              "BBC-006"
+            ],
+            "finding_2": "Límites antes de la autonomía (ambos medios): lo difícil no es el modelo, sino fijar permisos, umbrales y manejo de errores («the AI is rarely the hard part»; «clear guard rails… before that happens»). CNBC-019 tiene interés declarado: su autor construye estos sistemas.",
+            "references_2": [
+              "CNBC-019",
+              "CNBC-057",
+              "BBC-047",
+              "BBC-059"
+            ],
+            "nuance": "BBC-060 y BBC-072 ven el incidente como exagerado o dirigido por humanos: baja la urgencia de la «pérdida de control», no la de definir responsables. CNBC-044 está dispuesto a probar a pequeña escala (5–10 %), lo que favorece C; lo usamos como condición de revisión. Son opiniones sobre trading y ciberseguridad, no sobre productividad, y no son representativas.",
+            "uncertainty": "No sabemos si la organización ya tiene una política de permisos y responsables de IA (si existe, pasaríamos a C) ni cuánto comprende el personal los límites de los agentes (si es baja, reforzaríamos con A). Faltan también el uso actual de IA, las tareas candidatas y los requisitos regulatorios y de clientes. Hipótesis no comprobada: la resistencia interna se debe a falta de control y no de conocimiento.",
+            "action": "Aprobar B por 60 días: matriz de permisos (leer, proponer, ejecutar), responsables nominados, registro de acciones y reversión, criterios de escalamiento y diseño del piloto C. Revisión al día 30: si la matriz y los responsables están aprobados, iniciar el piloto C acotado. Al comité se le pide aprobar B, nominar responsables y encargar un diagnóstico interno. Riesgo residual: que B se perciba como burocracia y que haya uso no autorizado de IA mientras tanto.",
+            "audience_adaptation": "Para el Comité directivo pasamos del análisis de comentarios a una decisión: titular con la recomendación, plazos (60 días, revisión al día 30), un punto de decisión explícito, riesgo residual y lo que se le pide aprobar. El detalle metodológico se reduce a un gráfico y referencias breves por código.",
+            "human_correction": "Claude (Anthropic, claude-opus-5-5) para el análisis CIRC del corpus y la infografía. Corrección humana: verificamos 6 códigos contra el CSV; los likes no se usan como peso (CNBC-001 = 533; mediana CNBC = 1); el incidente BBC no se trata como hecho; CNBC-011 se excluye por spam. En la infografía, el gráfico se rotula como conteo de comentarios citados, no como prevalencia. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar."
+          }
+        }
+      ]
+    },
+    {
+      "activity_number": 3,
+      "name": "Interpretar Evidencia Visual",
+      "description": "Ficha ejecutiva de dos páginas sobre movilidad en el eje Alameda o reducción de riesgo precordillerano.",
+      "objective": "Separar observación e inferencia, contrastar hipótesis y recomendar una intervención con evidencia visual trazable.",
+      "results": []
+    },
+    {
+      "activity_number": 4,
+      "name": "NPS Farmacia",
+      "description": "Laboratorio de voz del cliente con dos períodos, análisis transparente y ficha ejecutiva.",
+      "objective": "Transformar indicadores NPS y comentarios anonimizados en una recomendación revisable y trazable.",
+      "results": []
+    },
+    {
+      "activity_number": 5,
+      "name": "Simulador de Decisiones",
+      "description": "Simulador multicriterio en dos rondas para un caso ficticio de trabajo híbrido.",
+      "objective": "Tomar una decisión ejecutiva bajo incertidumbre, declarar trade-offs y revisar la recomendación ante nueva evidencia.",
+      "results": []
+    }
+  ]
+}
