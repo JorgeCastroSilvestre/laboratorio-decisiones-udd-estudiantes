@@ -14,6 +14,19 @@ ROOT = Path(__file__).resolve().parent
 PUBLICATION_PATH = ROOT / "data" / "publication.json"
 VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 5)
 
+INDICATOR_LABELS = {
+    "findings": "Hallazgos",
+    "evidence_items": "Evidencias",
+    "decisions": "Decisiones",
+}
+
+AUDIENCE_LABELS = {
+    "comite_directivo": "Comité directivo",
+    "trabajadores": "Trabajadores",
+    "operaciones": "Operaciones",
+    "seguridad_gobernanza": "Seguridad y gobernanza de IA",
+}
+
 
 def load_publication() -> dict:
     try:
@@ -60,6 +73,46 @@ def activity_by_number(data: dict, number: int) -> dict:
     return next((item for item in data["activities"] if item["activity_number"] == number), empty_publication()["activities"][number - 1])
 
 
+def _activity_two_card(payload: dict) -> None:
+    audience = AUDIENCE_LABELS.get(payload.get("audience_family") or payload.get("audience"), payload.get("audience", "No informada"))
+    alternative = payload.get("alternative", "No informada")
+    top = st.columns(2)
+    top[0].metric("Audiencia", audience)
+    top[1].metric("Alternativa comunicada", alternative)
+
+    st.markdown("#### Mensaje ejecutivo")
+    st.info(payload.get("central_message") or "Sin mensaje registrado")
+
+    for index in (1, 2):
+        finding = payload.get(f"finding_{index}")
+        references = payload.get(f"references_{index}") or []
+        if finding:
+            st.markdown(f"**Hallazgo {index}**")
+            st.write(finding)
+            if references:
+                st.caption("Evidencia vinculada: " + " · ".join(str(item) for item in references))
+
+    details = [
+        ("Matiz", payload.get("nuance")),
+        ("Incertidumbre", payload.get("uncertainty")),
+        ("Acción propuesta", payload.get("action")),
+        ("Adaptación a la audiencia", payload.get("audience_adaptation")),
+        ("Corrección humana", payload.get("human_correction")),
+    ]
+    st.markdown("#### Criterio y acción")
+    for label, value in details:
+        if value:
+            st.markdown(f"**{label}.** {value}")
+
+
+def _render_activity_data(number: int, payload: dict) -> None:
+    if number == 2:
+        _activity_two_card(payload)
+        return
+    st.subheader("Ficha de la actividad")
+    st.json(payload, expanded=False)
+
+
 def render_activity_payload(data: dict, number: int, *, show_version: bool = True) -> None:
     activity = activity_by_number(data, number)
     hero(f"Actividad {number:02d} · Resultados publicados", activity["name"], activity.get("objective") or "Exploración de evidencia y toma de decisiones.")
@@ -76,17 +129,17 @@ def render_activity_payload(data: dict, number: int, *, show_version: bool = Tru
     if not indicators.empty and len(indicators.columns) > 1:
         columns = st.columns(min(3, len(indicators.columns) - 1))
         for column, key in zip(columns, [key for key in indicators.columns if key != "Grupo"]):
-            column.metric(key.replace("_", " ").title(), int(indicators[key].sum()))
+            column.metric(INDICATOR_LABELS.get(key, key.replace("_", " ").title()), int(indicators[key].sum()))
         long = indicators.melt(id_vars="Grupo", var_name="Indicador", value_name="Cantidad")
+        long["Indicador"] = long["Indicador"].map(lambda value: INDICATOR_LABELS.get(value, value.replace("_", " ").title()))
         figure = px.bar(long, x="Grupo", y="Cantidad", color="Indicador", barmode="group", title="Indicadores autorizados por grupo", color_discrete_sequence=["#005293", "#008dd2", "#f29400"])
         figure.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#243746")
-        st.plotly_chart(figure, width="stretch")
+        st.plotly_chart(figure, use_container_width=True)
 
     for result in visible:
         with st.expander(result["group"], expanded=len(visible) == 1):
             if result.get("activity_data"):
-                st.subheader("Ficha de la actividad")
-                st.json(result["activity_data"], expanded=True)
+                _render_activity_data(number, result["activity_data"])
             if result.get("findings"):
                 st.subheader("Hallazgos principales")
                 for item in result["findings"]:

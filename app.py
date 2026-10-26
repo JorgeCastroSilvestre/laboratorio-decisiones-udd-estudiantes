@@ -48,13 +48,13 @@ st.markdown(
 
 with st.sidebar:
     st.markdown("**Portal de Estudiantes**")
-    st.caption("Diplomado UDD · Solo lectura")
+    st.caption("Diplomado UDD · Consulta y simulación")
 
 navigation = st.navigation(
     {
         "Laboratorio": [st.Page("pages/inicio.py", title="Inicio", default=True)],
         "Actividades publicadas": [
-            st.Page(f"pages/actividad_{number:02d}.py", title=f"Actividad {number}")
+            st.Page("pages/actividad_05_v4.py" if number == 5 else f"pages/actividad_{number:02d}.py", title=f"Actividad {number}")
             for number in VISIBLE_ACTIVITY_NUMBERS
         ],
     }

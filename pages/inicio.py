@@ -34,9 +34,9 @@ for index, activity in enumerate(visible_activities):
             unsafe_allow_html=True,
         )
         st.page_link(
-            f"pages/actividad_{number:02d}.py",
+            "pages/actividad_05_v4.py" if number == 5 else f"pages/actividad_{number:02d}.py",
             label="Abrir simulador" if interactive else "Ver actividad",
             width="stretch",
         )
 
-st.caption("Portal de solo lectura. Los datos internos, entregas originales e información personal no forman parte de esta publicación.")
+st.caption("Las actividades 1–3 son de consulta. La Actividad 5 permite simular y descargar una ficha; no expone datos internos, entregas originales ni información personal.")
