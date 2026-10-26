@@ -27,10 +27,16 @@ for index, activity in enumerate(visible_activities):
     number = activity["activity_number"]
     count = len(activity.get("results", []))
     interactive = number == 5
+    display_name = "Decisiones estratégicas bajo incertidumbre" if interactive else activity["name"]
+    display_objective = (
+        "Afinar una decisión sobre Farmacia Cruz Blanca al modificar prioridades, restricciones y nueva evidencia."
+        if interactive
+        else (activity.get("objective") or "Módulo preparado para futuras publicaciones.")
+    )
     status = "Simulador disponible" if interactive else (f"{count} resultado{'s' if count != 1 else ''}" if count else "Sin publicaciones")
     with columns[index % 2]:
         st.markdown(
-            f'<div class="activity-card"><small>ACTIVIDAD {number:02d}</small><h3>{escape(activity["name"])}</h3><p>{escape(activity.get("objective") or "Módulo preparado para futuras publicaciones.")}</p><span class="status">{escape(status)}</span></div>',
+            f'<div class="activity-card"><small>ACTIVIDAD {number:02d}</small><h3>{escape(display_name)}</h3><p>{escape(display_objective)}</p><span class="status">{escape(status)}</span></div>',
             unsafe_allow_html=True,
         )
         st.page_link(
