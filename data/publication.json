@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "publication": {
-    "id": "v0003-c4b5ceeff5",
-    "version": 3,
+    "id": "v0004-029c4514dd",
+    "version": 4,
     "status": "published",
-    "prepared_at": "2026-10-26T01:19:30.133818Z",
-    "published_at": "2026-10-26T01:19:30.311333Z"
+    "prepared_at": "2026-10-26T14:42:03.204819Z",
+    "published_at": "2026-10-26T14:42:03.425500Z"
   },
   "laboratory": {
     "title": "Laboratorio de Decisiones con IA",
@@ -20,7 +20,7 @@
       "results": [
         {
           "result_id": "resultado-586fef516e166e7a",
-          "group": "Grupo 1",
+          "group": "Grupo 3",
           "sections": [
             "decisiones",
             "evidencias",
@@ -374,6 +374,83 @@
             "action": "Aprobar B por 60 días: matriz de permisos (leer, proponer, ejecutar), responsables nominados, registro de acciones y reversión, criterios de escalamiento y diseño del piloto C. Revisión al día 30: si la matriz y los responsables están aprobados, iniciar el piloto C acotado. Al comité se le pide aprobar B, nominar responsables y encargar un diagnóstico interno. Riesgo residual: que B se perciba como burocracia y que haya uso no autorizado de IA mientras tanto.",
             "audience_adaptation": "Para el Comité directivo pasamos del análisis de comentarios a una decisión: titular con la recomendación, plazos (60 días, revisión al día 30), un punto de decisión explícito, riesgo residual y lo que se le pide aprobar. El detalle metodológico se reduce a un gráfico y referencias breves por código.",
             "human_correction": "Claude (Anthropic, claude-opus-5-5) para el análisis CIRC del corpus y la infografía. Corrección humana: verificamos 6 códigos contra el CSV; los likes no se usan como peso (CNBC-001 = 533; mediana CNBC = 1); el incidente BBC no se trata como hecho; CNBC-011 se excluye por spam. En la infografía, el gráfico se rotula como conteo de comentarios citados, no como prevalencia. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar."
+          }
+        },
+        {
+          "result_id": "resultado-a043b6ff0a736ab3",
+          "group": "Grupo 2",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 3,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Especificar quien responde y como se asigna la responsabilidad",
+              "category": "hallazgo_comunicado",
+              "interpretation": "LA AUTOMATIZACION REQUIERE UN RESPONSABLE",
+              "limitations": "Comentarios que relativizan el riesgo o lo ven como marketing"
+            },
+            {
+              "description": "Domina la desconfianza en la fiabilidad",
+              "category": "hallazgo_comunicado",
+              "interpretation": "LA AUTOMATIZACION REQUIERE UN RESPONSABLE",
+              "limitations": "Comprobar que la organización ya tiene controles de uso responsable aplicados y suficientes."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-001",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-003",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "Una política interna tendría que fijar la responsabilidad humana de forma explícita.",
+              "justification": "LA AUTOMATIZACION REQUIERE UN RESPONSABLE",
+              "risks": "Comentarios que relativizan el riesgo o lo ven como marketing",
+              "review_conditions": "Se realizó un contraste manual con el corpus para verificar que las afirmaciones del análisis correspondieran al contenido de los comentarios BBC-022, CNBC-001 y CNBC-003, distinguiendo las opiniones de los autores de las interpretaciones del equipo. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar.",
+              "missing_data": "Comprobar que la organización ya tiene controles de uso responsable aplicados y suficientes."
+            }
+          ],
+          "activity_data": {
+            "audience": "operaciones",
+            "audience_family": "comite_directivo",
+            "alternative": "B",
+            "central_message": "LA AUTOMATIZACION REQUIERE UN RESPONSABLE",
+            "finding_1": "Especificar quien responde y como se asigna la responsabilidad",
+            "references_1": [
+              "BBC-022"
+            ],
+            "finding_2": "Domina la desconfianza en la fiabilidad",
+            "references_2": [
+              "CNBC-001",
+              "CNBC-003"
+            ],
+            "nuance": "Comentarios que relativizan el riesgo o lo ven como marketing",
+            "uncertainty": "Comprobar que la organización ya tiene controles de uso responsable aplicados y suficientes.",
+            "action": "Una política interna tendría que fijar la responsabilidad humana de forma explícita.",
+            "audience_adaptation": "Explique brevemente qué cambió en el lenguaje, foco o acción: La Gerencia de Operaciones debe asegurar que, antes de automatizar con IA, existan procedimientos claros, responsables definidos y registros que permitan verificar qué se hizo y quién lo autorizó, con supervisión humana durante el proceso.",
+            "human_correction": "Se realizó un contraste manual con el corpus para verificar que las afirmaciones del análisis correspondieran al contenido de los comentarios BBC-022, CNBC-001 y CNBC-003, distinguiendo las opiniones de los autores de las interpretaciones del equipo. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar."
           }
         }
       ]

@@ -25,6 +25,8 @@ st.markdown(
       [data-testid="stSidebar"] { background:linear-gradient(180deg,#041725,#082b43); border-right:1px solid rgba(0,141,210,.35); }
       [data-testid="stSidebar"] * { color:#eef8fd; }
       [data-testid="stSidebarNav"] a:hover { background:rgba(0,141,210,.14); }
+      [data-testid="stSidebar"] .stButton button { background:#0b3e5c; color:#fff; border:1px solid rgba(117,209,255,.45); }
+      [data-testid="stSidebar"] .stButton button:hover { background:#12618b; color:#fff; border-color:#75d1ff; }
       .portal-hero { position:relative; overflow:hidden; color:#fff; border-radius:18px; padding:2.1rem 2.2rem; margin-bottom:1.5rem;
         background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),radial-gradient(circle at 88% 18%,rgba(0,141,210,.55),transparent 18rem),linear-gradient(125deg,#041725,#005293);
         background-size:28px 28px,28px 28px,auto,auto; box-shadow:0 18px 45px rgba(0,48,84,.17); }
