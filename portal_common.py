@@ -12,7 +12,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
 PUBLICATION_PATH = ROOT / "data" / "publication.json"
-VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3)
+VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 5)
 
 
 def load_publication() -> dict:
