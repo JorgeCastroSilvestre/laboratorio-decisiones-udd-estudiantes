@@ -116,7 +116,7 @@ def _render_activity_data(number: int, payload: dict) -> None:
 def render_activity_payload(data: dict, number: int, *, show_version: bool = True) -> None:
     activity = activity_by_number(data, number)
     hero(f"Actividad {number:02d} · Resultados publicados", activity["name"], activity.get("objective") or "Exploración de evidencia y toma de decisiones.")
-    results = activity.get("results", [])
+    results = sorted(activity.get("results", []), key=lambda item: item.get("group", ""))
     if not results:
         st.info("Esta actividad aún no tiene resultados publicados.")
         st.caption("La información aparecerá después de la revisión y publicación docente.")
