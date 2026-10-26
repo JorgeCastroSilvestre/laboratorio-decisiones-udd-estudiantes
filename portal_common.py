@@ -12,6 +12,12 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
 PUBLICATION_PATH = ROOT / "data" / "publication.json"
+ACTIVITY_02_GALLERY = [
+    {"label": "Grupo 1 · Infografía", "path": ROOT / "assets" / "activity_02" / "grupo_1_pagina_2.png"},
+    {"label": "Grupo 2 · Infografía", "path": ROOT / "assets" / "activity_02" / "grupo_2_pagina_2.png"},
+    {"label": "Grupo 1 · Ficha asociada", "path": ROOT / "assets" / "activity_02" / "grupo_1_pagina_1.png"},
+    {"label": "Grupo 2 · Ficha asociada", "path": ROOT / "assets" / "activity_02" / "grupo_2_pagina_1.png"},
+]
 VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 5)
 
 INDICATOR_LABELS = {
@@ -105,6 +111,38 @@ def _activity_two_card(payload: dict) -> None:
             st.markdown(f"**{label}.** {value}")
 
 
+def _activity_two_gallery() -> None:
+    """Put the submitted infographics before the analytical summary."""
+    available = [item for item in ACTIVITY_02_GALLERY if item["path"].exists()]
+    if not available:
+        return
+
+    st.markdown("## Infografías entregadas")
+    st.caption("Las infografías aparecen primero; sus fichas asociadas completan la trazabilidad. Selecciona cualquier miniatura para revisarla en tamaño completo.")
+    if "activity_02_selected_infographic" not in st.session_state:
+        st.session_state.activity_02_selected_infographic = available[0]["label"]
+
+    columns = st.columns(min(4, len(available)))
+    for column, item in zip(columns, available):
+        with column:
+            st.image(str(item["path"]), caption=item["label"], width="stretch")
+            if st.button(
+                "Ampliar",
+                key=f"open_{item['label']}",
+                width="stretch",
+                type="primary" if st.session_state.activity_02_selected_infographic == item["label"] else "secondary",
+            ):
+                st.session_state.activity_02_selected_infographic = item["label"]
+
+    selected = next(
+        (item for item in available if item["label"] == st.session_state.activity_02_selected_infographic),
+        available[0],
+    )
+    st.markdown(f"### Vista ampliada · {selected['label']}")
+    st.image(str(selected["path"]), width="stretch")
+    st.divider()
+
+
 def _render_activity_data(number: int, payload: dict) -> None:
     if number == 2:
         _activity_two_card(payload)
@@ -122,6 +160,9 @@ def render_activity_payload(data: dict, number: int, *, show_version: bool = Tru
         st.caption("La información aparecerá después de la revisión y publicación docente.")
         return
 
+    if number == 2:
+        _activity_two_gallery()
+
     group_options = [item["group"] for item in results]
     selected = st.multiselect("Grupos o casos", group_options, default=group_options)
     visible = [item for item in results if item["group"] in selected]
@@ -134,7 +175,7 @@ def render_activity_payload(data: dict, number: int, *, show_version: bool = Tru
         long["Indicador"] = long["Indicador"].map(lambda value: INDICATOR_LABELS.get(value, value.replace("_", " ").title()))
         figure = px.bar(long, x="Grupo", y="Cantidad", color="Indicador", barmode="group", title="Indicadores autorizados por grupo", color_discrete_sequence=["#005293", "#008dd2", "#f29400"])
         figure.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#243746")
-        st.plotly_chart(figure, use_container_width=True)
+        st.plotly_chart(figure, width="stretch")
 
     for result in visible:
         with st.expander(result["group"], expanded=len(visible) == 1):

@@ -119,7 +119,7 @@ weight_figure = px.bar(
     title="Prioridades normalizadas",
 )
 weight_figure.update_layout(coloraxis_showscale=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(weight_figure, use_container_width=True)
+st.plotly_chart(weight_figure, width="stretch")
 
 st.markdown("### 2. Compara las políticas")
 round_one = evaluate(weights, budget, risk_tolerance, horizon)
@@ -151,7 +151,7 @@ score_figure = px.bar(
     title="Comparación ponderada · decisión inicial",
 )
 score_figure.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(score_figure, use_container_width=True)
+st.plotly_chart(score_figure, width="stretch")
 if winner_one:
     st.success(f"Lectura del modelo: alternativa {winner_one} · {ALTERNATIVES[winner_one]['name']}. {note_one}")
 else:
@@ -212,7 +212,7 @@ comparison_figure = px.bar(
     title="Decisión inicial → nueva evidencia → decisión revisada",
 )
 comparison_figure.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(comparison_figure, use_container_width=True)
+st.plotly_chart(comparison_figure, width="stretch")
 
 initial_winner = initial.get("winner")
 if selected_scenario and initial_winner != winner_two:
@@ -241,7 +241,7 @@ robustness_figure = px.bar(
     title="Ganador en 12 variaciones de sensibilidad",
 )
 robustness_figure.update_layout(showlegend=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(robustness_figure, use_container_width=True)
+st.plotly_chart(robustness_figure, width="stretch")
 with st.expander("Ver detalle de sensibilidad"):
     detail = sensitivity_table.copy()
     detail["variation"] = detail["variation"].map(lambda value: f"{value:+d} puntos")

@@ -28,7 +28,32 @@ hero(
 )
 
 st.caption("40 minutos · Flujo oficial: Simular → Guardar ANTES → incorporar evidencia → Guardar DESPUÉS → argumentar → descargar ficha")
-team = st.selectbox("Equipo", ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"], key="a5_team")
+
+if "a5v4_identity" not in st.session_state:
+    st.markdown("## Identificación del equipo")
+    st.write("Cada grupo registra su identidad antes de manipular el laboratorio. Las seis sesiones pueden trabajar al mismo tiempo desde navegadores o dispositivos distintos.")
+    with st.form("a5v4_registration"):
+        group_number = st.selectbox("Número de grupo", range(1, 7), format_func=lambda value: f"Grupo {value}")
+        member_text = st.text_area("Integrantes", placeholder="Un nombre por línea", help="Escribe al menos un integrante. Esta información aparecerá en el PDF final.")
+        register_team = st.form_submit_button("Ingresar al laboratorio", type="primary", width="stretch")
+    if register_team:
+        members = [item.strip() for item in member_text.splitlines() if item.strip()]
+        if not members:
+            st.error("Ingresa al menos un integrante para continuar.")
+        else:
+            st.session_state.a5v4_identity = {"team": f"Grupo {group_number}", "members": members}
+            st.rerun()
+    st.stop()
+
+identity = st.session_state.a5v4_identity
+team = identity["team"]
+members = identity["members"]
+identity_cols = st.columns([3, 1])
+identity_cols[0].success(f"Sesión activa: **{team}** · Integrantes: {', '.join(members)}")
+if identity_cols[1].button("Cambiar equipo", width="stretch"):
+    for key in ("a5v4_identity", "a5v4_before", "a5v4_after", "a5v4_sheet", "a5v4_pdf"):
+        st.session_state.pop(key, None)
+    st.rerun()
 st.info("La evidencia es real y anonimizada; los nombres de farmacia son alias docentes. Los puntajes 1–5 del simulador son supuestos didácticos y no predicciones.")
 
 
@@ -54,7 +79,7 @@ evidence_chart = px.bar(
     color_discrete_sequence=["#005293", "#F29400"],
 )
 evidence_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(evidence_chart, use_container_width=True)
+st.plotly_chart(evidence_chart, width="stretch")
 st.caption("Una mención indica presencia del tema en un comentario; no equivale a prevalencia poblacional ni prueba causalidad.")
 with st.expander("Trazabilidad y límites de las fuentes"):
     st.markdown(
@@ -90,7 +115,7 @@ normalized = normalize_weights(weights)
 weight_frame = pd.DataFrame({"Prioridad": [LABELS[key] for key in CRITERIA], "Porcentaje": [normalized[key] * 100 for key in CRITERIA]})
 weight_chart = px.bar(weight_frame, x="Porcentaje", y="Prioridad", orientation="h", text_auto=".0f", color="Porcentaje", color_continuous_scale=["#CDEFFC", "#008DD2", "#005293"], range_x=[0, 100], title="Cómo queda distribuida la importancia")
 weight_chart.update_layout(coloraxis_showscale=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(weight_chart, use_container_width=True)
+st.plotly_chart(weight_chart, width="stretch")
 
 
 st.markdown("## 3. Comparación estratégica")
@@ -100,11 +125,11 @@ display_columns = {"alternative": "Estrategia", "name": "Decisión", "score": "P
 st.dataframe(before.rename(columns=display_columns), hide_index=True, width="stretch", column_config={"Puntaje": st.column_config.NumberColumn(format="%.2f")})
 before_chart = px.bar(before, x="alternative", y="score", color="feasible", text_auto=".2f", hover_name="name", range_y=[0, 5], labels={"alternative": "Estrategia", "score": "Puntaje", "feasible": "Viable"}, title="Resultado inicial: puntaje y viabilidad", color_discrete_map={True: "#008DD2", False: "#AAB8C2"})
 before_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(before_chart, use_container_width=True)
+st.plotly_chart(before_chart, width="stretch")
 st.info(decision_explanation(before, weights, None))
 
-if st.button("Guardar decisión ANTES", type="primary", use_container_width=True):
-    st.session_state.a5v4_before = {"team": team, "winner": before_winner, "scores": before.to_dict("records"), "weights": dict(weights), "budget": budget, "risk": risk, "horizon": horizon, "operational": operational}
+if st.button("Guardar decisión ANTES", type="primary", width="stretch"):
+    st.session_state.a5v4_before = {"team": team, "members": members, "winner": before_winner, "scores": before.to_dict("records"), "weights": dict(weights), "budget": budget, "risk": risk, "horizon": horizon, "operational": operational}
     st.toast("Decisión inicial registrada en esta sesión.")
 
 
@@ -127,20 +152,20 @@ else:
     comparison = before[["alternative", "score"]].rename(columns={"score": "ANTES"}).merge(after[["alternative", "score"]].rename(columns={"score": "DESPUÉS"}), on="alternative").melt("alternative", var_name="Momento", value_name="Puntaje")
 compare_chart = px.bar(comparison, x="alternative", y="Puntaje", color="Momento", barmode="group", text_auto=".2f", range_y=[0, 5], labels={"alternative": "Estrategia"}, title="Qué cambió entre la decisión inicial y la revisada", color_discrete_sequence=["#7895A6", "#F29400"])
 compare_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(compare_chart, use_container_width=True)
+st.plotly_chart(compare_chart, width="stretch")
 st.info(decision_explanation(after, weights, selected_scenario))
 
 sens = sensitivity(weights, budget, risk, horizon, operational, selected_scenario)
 winner_counts = sens.groupby("winner", as_index=False).size().rename(columns={"winner": "Estrategia", "size": "Variaciones"})
 robust_chart = px.bar(winner_counts, x="Estrategia", y="Variaciones", color="Estrategia", text_auto=True, title="Robustez: estrategia ganadora al mover cada prioridad ±2", color_discrete_sequence=["#005293", "#008DD2", "#00A99D", "#F29400"])
 robust_chart.update_layout(showlegend=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(robust_chart, use_container_width=True)
+st.plotly_chart(robust_chart, width="stretch")
 with st.expander("Ver detalle del análisis de sensibilidad"):
     detail = sens.rename(columns={"criterion": "Prioridad", "variation": "Variación", "winner": "Ganadora", "note": "Lectura"})
     st.dataframe(detail, hide_index=True, width="stretch")
 
-if st.button("Guardar decisión DESPUÉS", disabled=not selected_scenario, use_container_width=True):
-    st.session_state.a5v4_after = {"team": team, "winner": after_winner, "scores": after.to_dict("records"), "scenario": selected_scenario}
+if st.button("Guardar decisión DESPUÉS", disabled=not selected_scenario, width="stretch"):
+    st.session_state.a5v4_after = {"team": team, "members": members, "winner": after_winner, "scores": after.to_dict("records"), "scenario": selected_scenario}
     st.toast("Decisión revisada registrada en esta sesión.")
 
 
@@ -162,13 +187,25 @@ with st.form("a5v4_sheet"):
     condition = st.text_area("Condición para revisar o suspender")
     save_sheet = st.form_submit_button("Guardar ficha", type="primary", disabled=not (before_saved and after_saved))
 if save_sheet:
-    record = {"team": team, "strategy": f"{chosen} · {ALTERNATIVES[chosen]['name']}", "evidence": evidence, "contrary": contrary, "tradeoff": tradeoff, "change": change, "condition": condition}
+    record = {
+        "team": team,
+        "members": members,
+        "before": before_saved.get("winner", "Pendiente"),
+        "after": after_saved.get("winner", "Pendiente"),
+        "strategy": f"{chosen} · {ALTERNATIVES[chosen]['name']}",
+        "evidence": evidence,
+        "contrary": contrary,
+        "tradeoff": tradeoff,
+        "change": change,
+        "condition": condition,
+    }
     st.session_state.a5v4_sheet = record
     st.session_state.a5v4_pdf = build_decision_pdf(record)
     st.success("Ficha preparada. Revísala y descarga el PDF.")
 
 if st.session_state.get("a5v4_pdf"):
-    st.download_button("Descargar ficha PDF", st.session_state.a5v4_pdf, f"actividad_05_{team.lower().replace(' ', '_')}.pdf", "application/pdf", use_container_width=True)
+    team_slug = team.lower().replace(" ", "_")
+    st.download_button("Descargar ficha PDF", st.session_state.a5v4_pdf, f"actividad_05_{team_slug}_decision_antes_despues.pdf", "application/pdf", width="stretch")
 else:
     st.caption("Para habilitar la ficha: guarda ANTES, selecciona nueva evidencia, guarda DESPUÉS y completa la argumentación.")
 

@@ -28,7 +28,7 @@ def require_student_access() -> None:
     if st.session_state.get("student_authenticated") is True:
         with st.sidebar:
             st.caption("Sesión de estudiante activa")
-            if st.button("Cerrar sesión", use_container_width=True):
+            if st.button("Cerrar sesión", width="stretch"):
                 st.session_state.pop("student_authenticated", None)
                 st.session_state.pop("student_email", None)
                 st.rerun()
