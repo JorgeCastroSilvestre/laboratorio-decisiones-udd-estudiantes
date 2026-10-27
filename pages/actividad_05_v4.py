@@ -79,7 +79,7 @@ evidence_chart = px.bar(
     color_discrete_sequence=["#005293", "#F29400"],
 )
 evidence_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(evidence_chart, width="stretch")
+st.plotly_chart(evidence_chart, use_container_width=True)
 st.caption("Una mención indica presencia del tema en un comentario; no equivale a prevalencia poblacional ni prueba causalidad.")
 with st.expander("Trazabilidad y límites de las fuentes"):
     st.markdown(
@@ -115,7 +115,7 @@ normalized = normalize_weights(weights)
 weight_frame = pd.DataFrame({"Prioridad": [LABELS[key] for key in CRITERIA], "Porcentaje": [normalized[key] * 100 for key in CRITERIA]})
 weight_chart = px.bar(weight_frame, x="Porcentaje", y="Prioridad", orientation="h", text_auto=".0f", color="Porcentaje", color_continuous_scale=["#CDEFFC", "#008DD2", "#005293"], range_x=[0, 100], title="Cómo queda distribuida la importancia")
 weight_chart.update_layout(coloraxis_showscale=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(weight_chart, width="stretch")
+st.plotly_chart(weight_chart, use_container_width=True)
 
 
 st.markdown("## 3. Comparación estratégica")
@@ -125,7 +125,7 @@ display_columns = {"alternative": "Estrategia", "name": "Decisión", "score": "P
 st.dataframe(before.rename(columns=display_columns), hide_index=True, width="stretch", column_config={"Puntaje": st.column_config.NumberColumn(format="%.2f")})
 before_chart = px.bar(before, x="alternative", y="score", color="feasible", text_auto=".2f", hover_name="name", range_y=[0, 5], labels={"alternative": "Estrategia", "score": "Puntaje", "feasible": "Viable"}, title="Resultado inicial: puntaje y viabilidad", color_discrete_map={True: "#008DD2", False: "#AAB8C2"})
 before_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(before_chart, width="stretch")
+st.plotly_chart(before_chart, use_container_width=True)
 st.info(decision_explanation(before, weights, None))
 
 if st.button("Guardar decisión ANTES", type="primary", width="stretch"):
@@ -152,14 +152,14 @@ else:
     comparison = before[["alternative", "score"]].rename(columns={"score": "ANTES"}).merge(after[["alternative", "score"]].rename(columns={"score": "DESPUÉS"}), on="alternative").melt("alternative", var_name="Momento", value_name="Puntaje")
 compare_chart = px.bar(comparison, x="alternative", y="Puntaje", color="Momento", barmode="group", text_auto=".2f", range_y=[0, 5], labels={"alternative": "Estrategia"}, title="Qué cambió entre la decisión inicial y la revisada", color_discrete_sequence=["#7895A6", "#F29400"])
 compare_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(compare_chart, width="stretch")
+st.plotly_chart(compare_chart, use_container_width=True)
 st.info(decision_explanation(after, weights, selected_scenario))
 
 sens = sensitivity(weights, budget, risk, horizon, operational, selected_scenario)
 winner_counts = sens.groupby("winner", as_index=False).size().rename(columns={"winner": "Estrategia", "size": "Variaciones"})
 robust_chart = px.bar(winner_counts, x="Estrategia", y="Variaciones", color="Estrategia", text_auto=True, title="Robustez: estrategia ganadora al mover cada prioridad ±2", color_discrete_sequence=["#005293", "#008DD2", "#00A99D", "#F29400"])
 robust_chart.update_layout(showlegend=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-st.plotly_chart(robust_chart, width="stretch")
+st.plotly_chart(robust_chart, use_container_width=True)
 with st.expander("Ver detalle del análisis de sensibilidad"):
     detail = sens.rename(columns={"criterion": "Prioridad", "variation": "Variación", "winner": "Ganadora", "note": "Lectura"})
     st.dataframe(detail, hide_index=True, width="stretch")
