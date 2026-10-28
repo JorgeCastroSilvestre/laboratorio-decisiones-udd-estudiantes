@@ -12,16 +12,71 @@ LABELS = {
 
 # Puntajes 1-5: supuestos didácticos, separados de la evidencia observada.
 ALTERNATIVES = {
-    "A": {"name": "Mejorar la atención", "description": "Reforzar protocolos, dotación y tiempos de atención.", "productivity": 4.0, "wellbeing": 5.0, "collaboration": 3.5, "budget_required": 3, "risk_level": 2, "days": 45, "blocked_by": "equipo_comercial_saturado"},
-    "B": {"name": "Mejorar la disponibilidad", "description": "Reducir quiebres de stock y alinear inventario físico y sistemas.", "productivity": 5.0, "wellbeing": 4.5, "collaboration": 4.5, "budget_required": 4, "risk_level": 4, "days": 75, "blocked_by": "dependencia_proveedores"},
-    "C": {"name": "Revisar precios y promociones", "description": "Revisar arquitectura de precios, beneficios y claridad de promociones.", "productivity": 3.5, "wellbeing": 4.0, "collaboration": 3.0, "budget_required": 5, "risk_level": 4, "days": 60, "blocked_by": "capacidad_analitica_limitada"},
-    "D": {"name": "Realizar un diagnóstico focalizado", "description": "Levantar evidencia adicional antes de escalar una intervención.", "productivity": 2.5, "wellbeing": 2.5, "collaboration": 5.0, "budget_required": 1, "risk_level": 1, "days": 30, "blocked_by": "ninguna"},
+    "A": {
+        "name": "Espera y turnos",
+        "description": "Optimizar tiempos de espera, distribución de turnos y procesos de atención.",
+        "productivity": 4.5, "wellbeing": 4.6, "collaboration": 3.7,
+        "budget_required": 3, "risk_level": 2, "days": 45,
+        "blocked_by": "capacidad_operativa_limitada",
+        "assumption": "Se supone que reorganizar flujos y turnos puede reducir esperas sin aumentar la dotación de forma permanente.",
+        "benefit": "Mejora visible de la experiencia de atención y del uso de la capacidad disponible.",
+        "tradeoff": "Puede trasladar carga entre horarios o equipos si no se mide la demanda por franja.",
+    },
+    "B": {
+        "name": "Disponibilidad y stock",
+        "description": "Mejorar reposición, inventario y disponibilidad de medicamentos.",
+        "productivity": 4.8, "wellbeing": 4.0, "collaboration": 4.2,
+        "budget_required": 4, "risk_level": 3, "days": 75,
+        "blocked_by": "dependencia_proveedores",
+        "assumption": "Se supone que una mejor coordinación de inventario y reposición disminuirá quiebres evitables.",
+        "benefit": "Mayor disponibilidad y menos reprocesos asociados a búsquedas o sustituciones.",
+        "tradeoff": "Exige inversión, calidad de datos y coordinación con proveedores que la farmacia no controla por completo.",
+    },
+    "C": {
+        "name": "Orientación y seguimiento digital",
+        "description": "Implementar herramientas digitales para informar, orientar y dar seguimiento a consultas de clientes.",
+        "productivity": 3.9, "wellbeing": 4.4, "collaboration": 4.6,
+        "budget_required": 4, "risk_level": 3, "days": 60,
+        "blocked_by": "integracion_digital_limitada",
+        "assumption": "Se supone que una herramienta simple y accesible resolverá consultas repetitivas y mejorará la continuidad del seguimiento.",
+        "benefit": "Entrega información consistente, deriva mejor las consultas y mantiene trazabilidad del seguimiento.",
+        "tradeoff": "Puede excluir a clientes con menor acceso digital y requiere integración, actualización de contenidos y resguardo de datos.",
+    },
+    "D": {
+        "name": "Diagnóstico focalizado",
+        "description": "Investigar una oportunidad A, B o C antes de realizar una inversión importante.",
+        "productivity": 2.8, "wellbeing": 3.2, "collaboration": 4.3,
+        "budget_required": 2, "risk_level": 1, "days": 30,
+        "blocked_by": "capacidad_analitica_limitada",
+        "assumption": "Se supone que treinta días de evidencia focalizada pueden reducir una incertidumbre decisiva antes de comprometer recursos mayores.",
+        "benefit": "Reduce incertidumbre y permite diseñar una inversión más específica y revisable.",
+        "tradeoff": "Posterga beneficios operativos y consume tiempo analítico; investigar no reemplaza decidir.",
+    },
+}
+
+DIAGNOSTIC_FOCUS = {
+    "A": {
+        "label": "Espera y turnos",
+        "evidence": "Tiempos de espera por franja, demanda, dotación, duración de atención y causas de abandono.",
+        "uncertainty": "Si el problema principal proviene de la distribución de turnos, del flujo o de la capacidad disponible.",
+    },
+    "B": {
+        "label": "Disponibilidad y stock",
+        "evidence": "Quiebres por medicamento, tiempos de reposición, exactitud del inventario y causas atribuibles a proveedores o procesos internos.",
+        "uncertainty": "Qué parte de la falta de disponibilidad puede resolver la farmacia y cuál depende de terceros.",
+    },
+    "C": {
+        "label": "Orientación y seguimiento digital",
+        "evidence": "Tipos y volumen de consultas, canales preferidos, capacidad de seguimiento, brechas digitales y requisitos de integración y privacidad.",
+        "uncertainty": "Si una solución digital resolvería necesidades reales y sería adoptada por clientes y equipos.",
+    },
 }
 
 SCENARIOS = {
-    "demand_increase": {"title": "Aumento de demanda", "description": "La demanda proyectada aumenta y eleva la presión sobre sucursales e inventario.", "effect": "Favorece la capacidad de respuesta de B y reduce la suficiencia de una mejora centrada solo en atención."},
-    "supply_issues": {"title": "Problemas de abastecimiento", "description": "Proveedores críticos informan plazos más largos e inciertos.", "effect": "Aumenta el valor de diagnosticar y coordinar, pero eleva el riesgo y plazo de B."},
-    "budget_reduced": {"title": "Presupuesto reducido", "description": "La disponibilidad presupuestaria disminuye dos niveles.", "effect": "La restricción puede volver inviables alternativas intensivas en recursos; el presupuesto no cambia de peso."},
+    "demand_increase": {"title": "Aumento de demanda presencial", "description": "La demanda proyectada aumenta y eleva la presión sobre la atención y el inventario.", "effect": "Aumenta el valor de A y B; reduce la conveniencia de postergar toda intervención para investigar."},
+    "supply_issues": {"title": "Problemas de abastecimiento", "description": "Proveedores críticos informan plazos más largos e inciertos.", "effect": "Eleva el riesgo y plazo de B; una orientación digital clara puede ayudar a informar alternativas, sin resolver el stock."},
+    "digital_followup": {"title": "Brecha de orientación y seguimiento", "description": "Las consultas repetidas y la falta de seguimiento aparecen como una fricción relevante para clientes y equipos.", "effect": "Aumenta el beneficio potencial de C, pero mantiene las exigencias de integración, accesibilidad y privacidad."},
+    "budget_reduced": {"title": "Presupuesto reducido", "description": "La disponibilidad presupuestaria disminuye dos niveles.", "effect": "Puede volver inviables A, B o C; D sigue teniendo costo y plazo propios y no reemplaza una decisión posterior."},
 }
 
 EVIDENCE = {
@@ -52,12 +107,19 @@ def normalize_weights(weights: dict[str, float]) -> dict[str, float]:
 def apply_scenario(matrix: dict, scenario: str | None) -> dict:
     changed = {code: dict(values) for code, values in matrix.items()}
     if scenario == "demand_increase":
-        changed["B"]["wellbeing"] = 5.0
-        changed["A"]["productivity"] = 3.25
+        changed["A"]["productivity"] = 5.0
+        changed["B"]["wellbeing"] = 4.4
+        changed["D"]["productivity"] = 2.4
     elif scenario == "supply_issues":
-        changed["B"]["risk_level"] = 5
+        changed["B"]["risk_level"] = 4
         changed["B"]["days"] = 90
-        changed["D"]["productivity"] = 3.5
+        changed["C"]["collaboration"] = 4.8
+        changed["D"]["productivity"] = 3.2
+    elif scenario == "digital_followup":
+        changed["C"]["productivity"] = 4.5
+        changed["C"]["wellbeing"] = 4.9
+        changed["C"]["collaboration"] = 5.0
+        changed["D"]["wellbeing"] = 3.5
     return changed
 
 
@@ -81,7 +143,7 @@ def evaluate(weights: dict[str, float], budget: int, risk_tolerance: int = 3, ho
             reasons.append("supera el horizonte")
         if operational_restriction != "ninguna" and values["blocked_by"] == operational_restriction:
             reasons.append("afectada por la restricción operativa")
-        rows.append({"alternative": code, "name": values["name"], "score": round(score, 3), "feasible": not reasons, "constraint": ", ".join(reasons) or "Sin alerta", "budget_required": values["budget_required"], "risk_level": values["risk_level"], "days": values["days"]})
+        rows.append({"alternative": code, "name": values["name"], "score": round(score, 3), "feasible": not reasons, "constraint": ", ".join(reasons) or "Sin alerta", "budget_required": values["budget_required"], "risk_level": values["risk_level"], "days": values["days"], "benefit": values["benefit"], "tradeoff": values["tradeoff"]})
     return pd.DataFrame(rows).sort_values(["feasible", "score", "alternative"], ascending=[False, False, True], ignore_index=True)
 
 

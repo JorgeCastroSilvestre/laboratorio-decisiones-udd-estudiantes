@@ -8,6 +8,7 @@ from executive_pdf import build_decision_pdf
 from pharmacy_05_simulator import (
     ALTERNATIVES,
     CRITERIA,
+    DIAGNOSTIC_FOCUS,
     EVIDENCE,
     LABELS,
     SCENARIOS,
@@ -81,7 +82,7 @@ evidence_chart = px.bar(
 )
 evidence_chart.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
 st.plotly_chart(evidence_chart, use_container_width=True)
-st.caption("Una mención indica presencia del tema en un comentario; no equivale a prevalencia poblacional ni prueba causalidad.")
+st.caption("Evidencia histórica NPS: una mención indica presencia del tema en un comentario; no equivale a prevalencia poblacional ni prueba causalidad. Esta evidencia se mantiene separada de los puntajes didácticos de las estrategias.")
 with st.expander("Trazabilidad y límites de las fuentes"):
     st.markdown(
         "- **Agregados verificados:** 2020 y 2021, Farmacia Cruz Blanca.\n"
@@ -106,8 +107,9 @@ with st.expander("Controles avanzados"):
     horizon = advanced[1].slider("Horizonte", 30, 90, 90, step=15, format="%d días", key="a5v4_horizon")
     restrictions = {
         "ninguna": "Sin restricción adicional",
-        "equipo_comercial_saturado": "Equipo comercial saturado",
+        "capacidad_operativa_limitada": "Capacidad operativa limitada",
         "dependencia_proveedores": "Dependencia de proveedores",
+        "integracion_digital_limitada": "Integración digital limitada",
         "capacidad_analitica_limitada": "Capacidad analítica limitada",
     }
     operational = advanced[2].selectbox("Restricción operativa", list(restrictions), format_func=lambda value: restrictions[value], key="a5v4_operational")
@@ -118,8 +120,42 @@ weight_chart = px.bar(weight_frame, x="Porcentaje", y="Prioridad", orientation="
 weight_chart.update_layout(coloraxis_showscale=False, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
 st.plotly_chart(weight_chart, use_container_width=True)
 
+st.markdown("### Configuración de la alternativa D · Diagnóstico focalizado")
+st.caption("D no es una pausa sin costo: utiliza 30 días, presupuesto y capacidad analítica para reducir una incertidumbre antes de invertir.")
+diagnostic_focus = st.selectbox(
+    "Problema que el equipo investigaría",
+    list(DIAGNOSTIC_FOCUS),
+    format_func=lambda code: f"{code} · {DIAGNOSTIC_FOCUS[code]['label']}",
+    key="a5v4_diagnostic_focus",
+)
+focus_defaults = DIAGNOSTIC_FOCUS[diagnostic_focus]
+st.info(f"**Evidencia sugerida:** {focus_defaults['evidence']}\n\n**Incertidumbre sugerida:** {focus_defaults['uncertainty']}")
+diagnostic_evidence = st.text_area(
+    "Evidencia que necesitaría el diagnóstico",
+    placeholder=focus_defaults["evidence"],
+    key="a5v4_diagnostic_evidence",
+)
+diagnostic_uncertainty = st.text_area(
+    "Incertidumbre que busca reducir",
+    placeholder=focus_defaults["uncertainty"],
+    key="a5v4_diagnostic_uncertainty",
+)
+
 
 st.markdown("## 3. Comparación estratégica")
+with st.expander("Alternativas, beneficios y trade-offs", expanded=True):
+    strategy_rows = []
+    for code, values in ALTERNATIVES.items():
+        strategy_rows.append({
+            "Estrategia": f"{code} · {values['name']}",
+            "Descripción": values["description"],
+            "Beneficio esperado": values["benefit"],
+            "Trade-off": values["tradeoff"],
+            "Presupuesto": values["budget_required"],
+            "Plazo": f"{values['days']} días",
+        })
+    st.dataframe(pd.DataFrame(strategy_rows), hide_index=True, width="stretch")
+    st.caption("Los beneficios, puntajes y restricciones son supuestos didácticos para comparar; no provienen del NPS histórico.")
 before = evaluate(weights, budget, risk, horizon, operational)
 before_winner, _ = recommendation(before)
 display_columns = {"alternative": "Estrategia", "name": "Decisión", "score": "Puntaje", "feasible": "Viable", "constraint": "Lectura de restricciones", "budget_required": "Presupuesto", "risk_level": "Riesgo", "days": "Días"}
@@ -130,7 +166,7 @@ st.plotly_chart(before_chart, use_container_width=True)
 st.info(decision_explanation(before, weights, None))
 
 if st.button("Guardar decisión ANTES", type="primary", width="stretch"):
-    st.session_state.a5v4_before = {"team": team, "members": members, "winner": before_winner, "scores": before.to_dict("records"), "weights": dict(weights), "budget": budget, "risk": risk, "horizon": horizon, "operational": operational}
+    st.session_state.a5v4_before = {"team": team, "members": members, "winner": before_winner, "scores": before.to_dict("records"), "weights": dict(weights), "budget": budget, "risk": risk, "horizon": horizon, "operational": operational, "diagnostic_focus": diagnostic_focus, "diagnostic_evidence": diagnostic_evidence, "diagnostic_uncertainty": diagnostic_uncertainty}
     st.toast("Decisión inicial registrada en esta sesión.")
 
 
@@ -166,7 +202,7 @@ with st.expander("Ver detalle del análisis de sensibilidad"):
     st.dataframe(detail, hide_index=True, width="stretch")
 
 if st.button("Guardar decisión DESPUÉS", disabled=not selected_scenario, width="stretch"):
-    st.session_state.a5v4_after = {"team": team, "members": members, "winner": after_winner, "scores": after.to_dict("records"), "scenario": selected_scenario}
+    st.session_state.a5v4_after = {"team": team, "members": members, "winner": after_winner, "scores": after.to_dict("records"), "scenario": selected_scenario, "diagnostic_focus": diagnostic_focus, "diagnostic_evidence": diagnostic_evidence, "diagnostic_uncertainty": diagnostic_uncertainty}
     st.toast("Decisión revisada registrada en esta sesión.")
 
 
@@ -194,11 +230,20 @@ if save_sheet:
         "before": before_saved.get("winner", "Pendiente"),
         "after": after_saved.get("winner", "Pendiente"),
         "strategy": f"{chosen} · {ALTERNATIVES[chosen]['name']}",
+        "strategy_code": chosen,
+        "strategy_description": ALTERNATIVES[chosen]["description"],
+        "strategy_assumption": ALTERNATIVES[chosen]["assumption"],
+        "strategy_benefit": ALTERNATIVES[chosen]["benefit"],
+        "strategy_tradeoff": ALTERNATIVES[chosen]["tradeoff"],
+        "historical_evidence": "NPS 2020: 11,9; NPS 2021: 13,0; 482 respuestas válidas y muestra cualitativa autorizada. Estos datos no determinan por sí solos la estrategia.",
         "evidence": evidence,
         "contrary": contrary,
         "tradeoff": tradeoff,
         "change": change,
         "condition": condition,
+        "diagnostic_focus": f"{diagnostic_focus} · {DIAGNOSTIC_FOCUS[diagnostic_focus]['label']}",
+        "diagnostic_evidence": diagnostic_evidence or focus_defaults["evidence"],
+        "diagnostic_uncertainty": diagnostic_uncertainty or focus_defaults["uncertainty"],
     }
     st.session_state.a5v4_sheet = record
     st.session_state.a5v4_pdf = build_decision_pdf(record)
