@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "publication": {
-    "id": "v0005-9375f08105",
-    "version": 5,
+    "id": "v0006-f5c18d5605",
+    "version": 6,
     "status": "published",
-    "prepared_at": "2026-10-27T17:13:08.516523Z",
-    "published_at": "2026-10-28T02:22:50.682529Z"
+    "prepared_at": "2026-10-28T12:34:15.338374Z",
+    "published_at": "2026-10-28T12:34:15.555991Z"
   },
   "laboratory": {
     "title": "Laboratorio de Decisiones con IA",
@@ -260,6 +260,305 @@
               "review_conditions": "Gerencia revisará la propuesta al día 30 y al día 60. Si existen controles aplicados y suficientes, tarea delimitada y línea base, priorizar C; si hay brechas de competencias, reforzar A. Son condiciones propuestas para validar internamente."
             }
           ]
+        },
+        {
+          "result_id": "resultado-395ab6eae9a0ba1f",
+          "group": "Grupo 4",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 38,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Control y contención: faltan límites reales y los «guardrails» declarados no convencen (BBC-015, 266 likes; BBC-047, 77; BBC-021, 51); en CNBC, un agente ejecutó una orden de venta a $0,01 (CNBC-081) y se lo describe como impredecible (CNBC-087)",
+              "category": "hallazgo_1",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: las preocupaciones más visibles tratan de qué ocurre cuando el agente actúa solo, con qué límites y quién responde; la barrera de conocimiento («cómo empiezo», CNBC-024, CNBC-071) y las señales favorables (probar con 5–10 % del portafolio, CNBC-044) aparecen poco y siempre condicionadas a reglas. Hipótesis no comprobadas: (1) que el personal de una organización de servicios profesionales comparta estas objeciones; (2) que los incidentes citados sean fallas de límites y no de habilidad; (3) que el tono alarmista dependa del tema de cada video y no del medio (hay un solo video por fuente). Los likes miden visibilidad, no acuerdo: CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC (54 %)."
+            },
+            {
+              "description": "Responsabilidad: se pregunta quién responde —usuario, proveedor o nadie— (BBC-006, BBC-022, BBC-066; CNBC-039). Evidencia contraria: BBC-072 (114 likes) ubica la causa en el humano que instruye al agente, no en el agente",
+              "category": "hallazgo_2",
+              "interpretation": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: las preocupaciones más visibles tratan de qué ocurre cuando el agente actúa solo, con qué límites y quién responde; la barrera de conocimiento («cómo empiezo», CNBC-024, CNBC-071) y las señales favorables (probar con 5–10 % del portafolio, CNBC-044) aparecen poco y siempre condicionadas a reglas. Hipótesis no comprobadas: (1) que el personal de una organización de servicios profesionales comparta estas objeciones; (2) que los incidentes citados sean fallas de límites y no de habilidad; (3) que el tono alarmista dependa del tema de cada video y no del medio (hay un solo video por fuente). Los likes miden visibilidad, no acuerdo: CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC (54 %)."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-015",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-047",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-021",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-081",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-087",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-006",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-066",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-039",
+              "excerpt": "¿a quién demando?",
+              "verification": "fragmento_no_encontrado"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-072",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-024",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-071",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-044",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-001",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-003",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-011",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-019",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-035",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-041",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-056",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-016",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-033",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-037",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-070",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-097",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-006",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-017",
+              "excerpt": "cómo empiezo",
+              "verification": "fragmento_no_encontrado"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-065",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-008",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-004",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-060",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-064",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-020",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-023",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-031",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-100",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-049",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "Se prioriza B. Uso responsable de IA: los comentarios reclaman reglas operativas (permisos, topes, trazabilidad, responsable nombrado) antes que habilidades o productividad; B es además requisito de C, pues un piloto solo es «supervisado» si ya se definió qué puede hacer el agente, quién aprueba y cómo se detiene, y A rinde más después de un piloto que muestre dónde poner los límites.",
+              "justification": "¿Qué sugieren los comentarios? ¿Qué explicación posible aún no está comprobada? Interpretación: las preocupaciones más visibles tratan de qué ocurre cuando el agente actúa solo, con qué límites y quién responde; la barrera de conocimiento («cómo empiezo», CNBC-024, CNBC-071) y las señales favorables (probar con 5–10 % del portafolio, CNBC-044) aparecen poco y siempre condicionadas a reglas. Hipótesis no comprobadas: (1) que el personal de una organización de servicios profesionales comparta estas objeciones; (2) que los incidentes citados sean fallas de límites y no de habilidad; (3) que el tono alarmista dependa del tema de cada video y no del medio (hay un solo video por fuente). Los likes miden visibilidad, no acuerdo: CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC (54 %).",
+              "missing_data": "un diagnóstico interno que muestre gobierno de uso ya sólido (pasaría a C) o un equipo con poca práctica real (pasaría a A); también la métrica de éxito a 60 días, aún no definida."
+            }
+          ]
+        },
+        {
+          "result_id": "resultado-818a2ea21e0e3feb",
+          "group": "Grupo 5",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 0,
+            "evidence_items": 9,
+            "decisions": 0
+          },
+          "findings": [],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "excerpt": "who, what, when, where, and how",
+              "verification": "coincidencia_parcial"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-006",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-006",
+              "excerpt": "Paid for by wall street to get average people ‘investing’ and then rug them on all their money",
+              "verification": "fragmento_no_encontrado"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-020",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-067",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-072",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-044",
+              "excerpt": "I might test it with 5 or 10% of my portfolio...will see.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "excerpt": "You should define the rules and automate the AI follow your rules",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-015",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": []
         }
       ]
     },
@@ -540,6 +839,193 @@
             "action": "1. Antes del día 1: seleccionar tareas internas, revisables y reversibles, y registrar su línea base de tiempo, calidad y retrabajo. 2. Asignar un responsable por tarea y permisos mínimos, sin acceso a clientes ni a sistemas externos. 3. Revisar cada salida del agente antes de usarla y registrar la revisión. 4. Días 30 y 60: continuar si el 100 % de las salidas tiene revisión y responsable, no hay incidentes ni acciones fuera de permisos, y el tiempo neto por tarea es igual o menor que la línea base en más de la mitad de las tareas. Cualquier incidente suspende el piloto.",
             "audience_adaptation": "Para Operaciones, el foco pasa a la ejecución: qué tareas, quién revisa, qué se mide y cuándo se detiene el piloto. El lenguaje es operativo (línea base, tiempo neto, retrabajo, permisos) y la acción se expresa en pasos con plazos.",
             "human_correction": "Herramienta utilizada y corrección, verificación o ajuste realizado: Claude Opus 5.5 (Anthropic). Todos los IDs corresponden a comentarios verificados en el CSV y validados por el equipo en la Clase 1. Correcciones mantenidas: se excluyó CNBC-021 (registro dañado) y se corrigió la paráfrasis de BBC-022, que añadía «por qué». Ajuste: la ficha se redactó con apoyo de IA, la ficha del ejercicio práctica N° 1 y el equipo la revisó."
+          }
+        },
+        {
+          "result_id": "resultado-1e2f8747bdb53d6c",
+          "group": "Grupo 4",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 9,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Faltan límites reales a la autonomía de los agentes de IA y los «guardrails» declarados no convencen; se describe incluso una orden de venta ejecutada a $0,01. Por eso, el resguardo central son límites de acción claros.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de capacitarnos o lanzar pilotos con IA, definamos reglas claras de uso (permisos, límites, trazabilidad y responsables) para proteger y potenciar nuestro trabajo diario.",
+              "limitations": "BBC-072 (114 likes): el control final es de la persona que da la instrucción, no de la IA. Es una opinión, no evidencia verificada; matiza al ubicar parte de la responsabilidad en quien instruye."
+            },
+            {
+              "description": "La mayor duda de las audiencias es quién responde ante una falla del agente: ¿el usuario, el proveedor o nadie? El resguardo clave es definir roles claros para que ninguna persona trabajadora quede desprotegida.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de capacitarnos o lanzar pilotos con IA, definamos reglas claras de uso (permisos, límites, trazabilidad y responsables) para proteger y potenciar nuestro trabajo diario.",
+              "limitations": "Son opiniones públicas de dos videos (uno por medio), no de trabajadores de una organización; los likes miden visibilidad, no acuerdo (CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC, 54 %). Falta un diagnóstico interno, saber si los incidentes fueron fallas de límites o de capacitación, y definir la métrica de éxito a 60 días."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-015",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-047",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-021",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-081",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-087",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-006",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-066",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-039",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "B",
+              "recommendation": "1) Definir reglas operativas (límites de acción, permisos, trazabilidad, responsable). 2) Hacer un diagnóstico interno de preparación. 3) Medir en 60 días cómo nos adaptamos antes de decidir capacitar masivamente o ampliar el uso de la IA.",
+              "justification": "Antes de capacitarnos o lanzar pilotos con IA, definamos reglas claras de uso (permisos, límites, trazabilidad y responsables) para proteger y potenciar nuestro trabajo diario.",
+              "risks": "BBC-072 (114 likes): el control final es de la persona que da la instrucción, no de la IA. Es una opinión, no evidencia verificada; matiza al ubicar parte de la responsabilidad en quien instruye.",
+              "review_conditions": "Herramientas: Claude (análisis temático del corpus y redacción de la ficha) y Gemini (infografía). Corrección humana: se excluyeron como evidencia CNBC-011 (publicidad encubierta) y CNBC-019 (autopromoción), se descartaron conteos por tema no verificados y se trató BBC-072 como opinión y no como hallazgo. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar.",
+              "missing_data": "Son opiniones públicas de dos videos (uno por medio), no de trabajadores de una organización; los likes miden visibilidad, no acuerdo (CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC, 54 %). Falta un diagnóstico interno, saber si los incidentes fueron fallas de límites o de capacitación, y definir la métrica de éxito a 60 días."
+            }
+          ],
+          "activity_data": {
+            "audience": "trabajadores",
+            "audience_family": "trabajadores",
+            "alternative": "B",
+            "central_message": "Antes de capacitarnos o lanzar pilotos con IA, definamos reglas claras de uso (permisos, límites, trazabilidad y responsables) para proteger y potenciar nuestro trabajo diario.",
+            "finding_1": "Faltan límites reales a la autonomía de los agentes de IA y los «guardrails» declarados no convencen; se describe incluso una orden de venta ejecutada a $0,01. Por eso, el resguardo central son límites de acción claros.",
+            "references_1": [
+              "BBC-015",
+              "BBC-047",
+              "BBC-021",
+              "CNBC-081",
+              "CNBC-087"
+            ],
+            "finding_2": "La mayor duda de las audiencias es quién responde ante una falla del agente: ¿el usuario, el proveedor o nadie? El resguardo clave es definir roles claros para que ninguna persona trabajadora quede desprotegida.",
+            "references_2": [
+              "BBC-006",
+              "BBC-022",
+              "BBC-066",
+              "CNBC-039"
+            ],
+            "nuance": "BBC-072 (114 likes): el control final es de la persona que da la instrucción, no de la IA. Es una opinión, no evidencia verificada; matiza al ubicar parte de la responsabilidad en quien instruye.",
+            "uncertainty": "Son opiniones públicas de dos videos (uno por medio), no de trabajadores de una organización; los likes miden visibilidad, no acuerdo (CNBC-001 y CNBC-003 reúnen 871 de 1.619 likes de CNBC, 54 %). Falta un diagnóstico interno, saber si los incidentes fueron fallas de límites o de capacitación, y definir la métrica de éxito a 60 días.",
+            "action": "1) Definir reglas operativas (límites de acción, permisos, trazabilidad, responsable). 2) Hacer un diagnóstico interno de preparación. 3) Medir en 60 días cómo nos adaptamos antes de decidir capacitar masivamente o ampliar el uso de la IA.",
+            "audience_adaptation": "Lenguaje cercano y colaborativo («nosotros», «tú») en vez de jerga técnica; el foco pasa de la priorización de iniciativas a «¿cómo nos afecta?, ¿qué beneficios hay? y ¿qué resguardos tendremos?»; la acción se plantea como pasos que protegen al equipo (quién te apoya si algo falla).",
+            "human_correction": "Herramientas: Claude (análisis temático del corpus y redacción de la ficha) y Gemini (infografía). Corrección humana: se excluyeron como evidencia CNBC-011 (publicidad encubierta) y CNBC-019 (autopromoción), se descartaron conteos por tema no verificados y se trató BBC-072 como opinión y no como hallazgo. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar."
+          }
+        },
+        {
+          "result_id": "resultado-1d706d8e634e856c",
+          "group": "Grupo 5",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 4,
+            "decisions": 0
+          },
+          "findings": [
+            {
+              "description": "Los comentarios piden responsabilidad con nombre: quién, qué, cuándo, dónde y cómo. Si todos son vagamente responsables, nadie lo es.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de usar agentes de IA en compras, definamos responsables, límites y criterios de corte; luego probemos en un piloto acotado y medible.",
+              "limitations": "CNBC-044 propone probar con 5 o 10 % de la cartera antes de definir todo. Es una postura minoritaria (1 like), pero sugiere acotar el piloto en vez de posponerlo."
+            },
+            {
+              "description": "La preocupación se concentra en controles operativos: límite máximo por operación, qué pasa si se corta el flujo de datos y cómo se manejan los procesos a medio ejecutar.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Antes de usar agentes de IA en compras, definamos responsables, límites y criterios de corte; luego probemos en un piloto acotado y medible.",
+              "limitations": "No sabemos con qué frecuencia ocurren estos problemas en compras reales. El corpus no tiene criterio de muestreo y el incidente de BBC no tiene fuente primaria. Son comentarios públicos, no hechos verificados."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-066",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-019",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [],
+          "activity_data": {
+            "audience": "comite_directivo",
+            "audience_family": "comite_directivo",
+            "alternative": "B",
+            "central_message": "Antes de usar agentes de IA en compras, definamos responsables, límites y criterios de corte; luego probemos en un piloto acotado y medible.",
+            "finding_1": "Los comentarios piden responsabilidad con nombre: quién, qué, cuándo, dónde y cómo. Si todos son vagamente responsables, nadie lo es.",
+            "references_1": [
+              "BBC-022",
+              "BBC-066"
+            ],
+            "finding_2": "La preocupación se concentra en controles operativos: límite máximo por operación, qué pasa si se corta el flujo de datos y cómo se manejan los procesos a medio ejecutar.",
+            "references_2": [
+              "CNBC-019",
+              "CNBC-057"
+            ],
+            "nuance": "CNBC-044 propone probar con 5 o 10 % de la cartera antes de definir todo. Es una postura minoritaria (1 like), pero sugiere acotar el piloto en vez de posponerlo.",
+            "uncertainty": "No sabemos con qué frecuencia ocurren estos problemas en compras reales. El corpus no tiene criterio de muestreo y el incidente de BBC no tiene fuente primaria. Son comentarios públicos, no hechos verificados.",
+            "action": "1) Asignar responsables y límites cuantificados por tipo de decisión. 2) Definir criterios de corte y cómo retomar procesos interrumpidos. 3) Piloto acotado en un proyecto o tipo de OC, con métricas definidas antes: errores, desviaciones, tiempo de aprobación y revisiones humanas. 4) Revisar resultados el 24 de diciembre de 2026 antes de ampliar. Las métricas son propuesta del equipo, no hallazgos del corpus.",
+            "audience_adaptation": "Adaptación: lenguaje operativo (responsables, límites, criterios de corte y métricas) y foco en implementación y control, no en el debate general sobre IA. La acción es un piloto con revisión de resultados antes de escalar.",
+            "human_correction": "Herramienta: Claude (Haiku 5.5) analizó los 111 comentarios. Correcciones humanas: CNBC-006 se cita como BBC-006 en responsabilidad legal; CNBC-020 y CNBC-067 salen del grupo de actores comerciales; ranking de BBC corregido (BBC-072 con 114 likes, no 126)."
           }
         }
       ]

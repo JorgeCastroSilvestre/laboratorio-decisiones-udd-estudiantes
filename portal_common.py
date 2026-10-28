@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 
@@ -26,6 +27,7 @@ AUDIENCE_LABELS = {
     "trabajadores": "Trabajadores",
     "operaciones": "Operaciones",
     "seguridad_gobernanza": "Seguridad y gobernanza de IA",
+    "seguridad_gobernanza_ia": "Seguridad y gobernanza de IA",
 }
 
 
@@ -155,6 +157,124 @@ def _activity_two_gallery() -> None:
     st.divider()
 
 
+def _activity_two_analysis(results: list[dict]) -> None:
+    """Student-safe version of the existing Activity 2 teaching dashboard."""
+    rows = []
+    for result in results:
+        payload = result.get("activity_data") or {}
+        if not payload:
+            continue
+        rows.append(
+            {
+                "grupo": result.get("group", "Grupo"),
+                "audiencia": payload.get("audience") or payload.get("audience_family") or "No informada",
+                "alternativa": payload.get("alternative") or "No informada",
+                "mensaje_central": payload.get("central_message") or "",
+                "referencias_1": payload.get("references_1") or [],
+                "referencias_2": payload.get("references_2") or [],
+                "matiz": payload.get("nuance") or "",
+                "incertidumbre": payload.get("uncertainty") or "",
+                "accion": payload.get("action") or "",
+                "correccion_humana": payload.get("human_correction") or "",
+            }
+        )
+    frame = pd.DataFrame(rows)
+    if frame.empty:
+        return
+
+    st.markdown("## Análisis comparado de las decisiones")
+    st.caption("Los gráficos reutilizan los campos autorizados del tablero docente y permiten comparar cómo cambia la comunicación según la audiencia.")
+    teams = sorted(frame["grupo"].unique())
+    audiences = sorted(frame["audiencia"].unique())
+    alternatives = sorted(frame["alternativa"].unique())
+    c1, c2, c3 = st.columns(3)
+    selected_teams = c1.multiselect("Grupos", teams, default=teams, key="student_a2_groups")
+    selected_audiences = c2.multiselect(
+        "Audiencias",
+        audiences,
+        default=audiences,
+        format_func=lambda value: AUDIENCE_LABELS.get(value, str(value).replace("_", " ").title()),
+        key="student_a2_audiences",
+    )
+    selected_alternatives = c3.multiselect("Alternativas", alternatives, default=alternatives, key="student_a2_alternatives")
+    filtered = frame[
+        frame["grupo"].isin(selected_teams)
+        & frame["audiencia"].isin(selected_audiences)
+        & frame["alternativa"].isin(selected_alternatives)
+    ].copy()
+    if filtered.empty:
+        st.info("No hay resultados para la combinación seleccionada.")
+        return
+
+    left, right = st.columns(2)
+    decisions = filtered.groupby(["audiencia", "alternativa"]).size().reset_index(name="entregas")
+    decisions["audiencia"] = decisions["audiencia"].map(lambda value: AUDIENCE_LABELS.get(value, str(value).replace("_", " ").title()))
+    decision_figure = px.bar(
+        decisions,
+        x="audiencia",
+        y="entregas",
+        color="alternativa",
+        barmode="group",
+        text_auto=True,
+        title="Decisiones por audiencia",
+        labels={"audiencia": "Audiencia", "entregas": "Grupos", "alternativa": "Alternativa"},
+        color_discrete_sequence=["#005293", "#008dd2", "#f29400"],
+    )
+    left.plotly_chart(decision_figure, use_container_width=True)
+
+    reference_rows = []
+    for _, row in filtered.iterrows():
+        for field in ("referencias_1", "referencias_2"):
+            reference_rows.extend({"grupo": row["grupo"], "codigo": str(code).strip()} for code in row[field] if str(code).strip())
+    references = pd.DataFrame(reference_rows)
+    if references.empty:
+        right.info("No hay referencias disponibles para los filtros seleccionados.")
+    else:
+        reference_counts = references.groupby("codigo").size().reset_index(name="usos").sort_values("usos", ascending=False)
+        reference_figure = px.bar(
+            reference_counts.head(15),
+            x="codigo",
+            y="usos",
+            text_auto=True,
+            title="Referencias más utilizadas",
+            labels={"codigo": "Referencia", "usos": "Usos"},
+            color_discrete_sequence=["#008dd2"],
+        )
+        right.plotly_chart(reference_figure, use_container_width=True)
+
+    criteria = {
+        "Mensaje central": filtered["mensaje_central"].str.strip().ne(""),
+        "Referencias": filtered.apply(lambda row: bool(row["referencias_1"] and row["referencias_2"]), axis=1),
+        "Matiz": filtered["matiz"].str.strip().ne(""),
+        "Incertidumbre": filtered["incertidumbre"].str.strip().ne(""),
+        "Acción": filtered["accion"].str.strip().ne(""),
+        "Corrección humana": filtered["correccion_humana"].str.strip().ne(""),
+    }
+    values = [[1 if criteria[name].loc[index] else 0 for name in criteria] for index in filtered.index]
+    traceability = go.Figure(
+        go.Heatmap(
+            z=values,
+            x=list(criteria),
+            y=filtered["grupo"],
+            zmin=0,
+            zmax=1,
+            colorscale=[[0, "#E7EEF3"], [1, "#008DD2"]],
+            showscale=False,
+            text=[["Presente" if cell else "Pendiente" for cell in row] for row in values],
+            texttemplate="%{text}",
+            hovertemplate="%{y}<br>%{x}: %{text}<extra></extra>",
+        )
+    )
+    traceability.update_layout(title="Trazabilidad del mensaje a la acción", xaxis_title="", yaxis_title="")
+    st.plotly_chart(traceability, use_container_width=True)
+
+    st.markdown("### Mensajes, acciones y límites")
+    table = filtered[["grupo", "audiencia", "alternativa", "mensaje_central", "accion", "matiz", "incertidumbre", "correccion_humana"]].copy()
+    table["audiencia"] = table["audiencia"].map(lambda value: AUDIENCE_LABELS.get(value, str(value).replace("_", " ").title()))
+    table.columns = ["Grupo", "Audiencia", "Alternativa", "Mensaje central", "Acción", "Matiz", "Incertidumbre", "Corrección humana"]
+    st.dataframe(table, hide_index=True, width="stretch")
+
+
 def _render_activity_data(number: int, payload: dict) -> None:
     if number == 2:
         _activity_two_card(payload)
@@ -169,6 +289,7 @@ def render_activity_payload(data: dict, number: int, *, show_version: bool = Tru
     hero(f"Actividad {number:02d} · Resultados publicados", activity["name"], activity.get("objective") or "Exploración de evidencia y toma de decisiones.")
     if number == 2:
         _activity_two_gallery()
+        _activity_two_analysis(sorted(activity.get("results", []), key=lambda item: item.get("group", "")))
         if show_version:
             st.caption(f"Versión pública {data['publication'].get('version', 0)} · Actualizada: {formatted_date(data['publication'].get('published_at'))}")
         return
