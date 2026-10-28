@@ -18,9 +18,10 @@ from pharmacy_05_simulator import (
     recommendation,
     sensitivity,
 )
-from portal_common import hero
+from portal_common import hero, student_welcome
 
 
+student_welcome()
 hero(
     "Actividad 05 · Decisiones estratégicas bajo incertidumbre",
     "Afinar una decisión con nueva evidencia",

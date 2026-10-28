@@ -9,6 +9,9 @@ from portal_common import VISIBLE_ACTIVITY_NUMBERS, formatted_date, hero, load_p
 
 data = load_publication()
 visible_activities = [activity for activity in data["activities"] if activity["activity_number"] in VISIBLE_ACTIVITY_NUMBERS]
+student_name = st.session_state.get("student_name")
+if student_name:
+    st.caption(f"Sesión de estudiante · {student_name}")
 hero(
     "Diplomado UDD · Portal de estudiantes",
     "Laboratorio de Decisiones con IA",
@@ -45,4 +48,4 @@ for index, activity in enumerate(visible_activities):
             width="stretch",
         )
 
-st.caption("Las actividades 1–3 son de consulta. La Actividad 5 permite simular y descargar una ficha; no expone datos internos, entregas originales ni información personal.")
+st.caption("Las actividades 1–4 son de consulta. La Actividad 5 permite simular y descargar una ficha; no expone datos internos, entregas originales ni información personal.")

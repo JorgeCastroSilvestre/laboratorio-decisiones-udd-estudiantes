@@ -19,6 +19,9 @@ Configure estos valores en **Streamlit Community Cloud → App settings → Secr
 [access]
 student_password = "CLAVE_DEFINIDA_POR_EL_DOCENTE"
 allowed_emails = ["REEMPLAZAR_CON_CORREO_AUTORIZADO"]
+
+[access.student_names]
+"REEMPLAZAR_CON_CORREO_AUTORIZADO" = "NOMBRE DEL ESTUDIANTE"
 ```
 
 No cree ni publique `.streamlit/secrets.toml`. Para una vista local sin autenticación destinada exclusivamente a revisión docente, defina temporalmente `PORTAL_PREVIEW_MODE=1`.

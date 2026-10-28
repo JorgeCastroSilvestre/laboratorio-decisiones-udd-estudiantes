@@ -13,7 +13,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
 PUBLICATION_PATH = ROOT / "data" / "publication.json"
-VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 5)
+VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 4, 5)
 
 INDICATOR_LABELS = {
     "findings": "Hallazgos",
@@ -70,6 +70,12 @@ def hero(kicker: str, title: str, subtitle: str) -> None:
     )
 
 
+def student_welcome() -> None:
+    name = st.session_state.get("student_name")
+    if name:
+        st.caption(f"Sesión de estudiante · {name}")
+
+
 def activity_by_number(data: dict, number: int) -> dict:
     return next((item for item in data["activities"] if item["activity_number"] == number), empty_publication()["activities"][number - 1])
 
@@ -107,22 +113,22 @@ def _activity_two_card(payload: dict) -> None:
 
 
 def _activity_two_gallery() -> None:
-    """Put the submitted infographics before the analytical summary."""
+    """Show only the submitted infographics as an expandable photo gallery."""
     assets = ROOT / "assets" / "activity_02"
     available = []
-    for path in assets.glob("grupo_*_pagina_*.png"):
-        match = re.fullmatch(r"grupo_(\d+)_pagina_([12])\.png", path.name)
+    for path in assets.glob("grupo_*_pagina_2.png"):
+        match = re.fullmatch(r"grupo_(\d+)_pagina_2\.png", path.name)
         if not match:
             continue
-        group_number, page_number = (int(value) for value in match.groups())
-        label_type = "Infografía" if page_number == 2 else "Ficha asociada"
-        available.append({"label": f"Grupo {group_number} · {label_type}", "path": path, "group": group_number, "page": page_number})
-    available.sort(key=lambda item: (0 if item["page"] == 2 else 1, item["group"]))
+        group_number = int(match.group(1))
+        available.append({"label": f"Grupo {group_number}", "path": path, "group": group_number})
+    available.sort(key=lambda item: item["group"])
     if not available:
+        st.info("Las infografías aparecerán aquí después de ser publicadas por el docente.")
         return
 
-    st.markdown("## Infografías entregadas")
-    st.caption("Las infografías aparecen primero; sus fichas asociadas completan la trazabilidad. Selecciona cualquier miniatura para revisarla en tamaño completo.")
+    st.markdown("## Galería de infografías")
+    st.caption("Selecciona una miniatura para verla en tamaño completo.")
     if "activity_02_selected_infographic" not in st.session_state:
         st.session_state.activity_02_selected_infographic = available[0]["label"]
 
@@ -159,15 +165,18 @@ def _render_activity_data(number: int, payload: dict) -> None:
 
 def render_activity_payload(data: dict, number: int, *, show_version: bool = True) -> None:
     activity = activity_by_number(data, number)
+    student_welcome()
     hero(f"Actividad {number:02d} · Resultados publicados", activity["name"], activity.get("objective") or "Exploración de evidencia y toma de decisiones.")
+    if number == 2:
+        _activity_two_gallery()
+        if show_version:
+            st.caption(f"Versión pública {data['publication'].get('version', 0)} · Actualizada: {formatted_date(data['publication'].get('published_at'))}")
+        return
     results = sorted(activity.get("results", []), key=lambda item: item.get("group", ""))
     if not results:
         st.info("Esta actividad aún no tiene resultados publicados.")
         st.caption("La información aparecerá después de la revisión y publicación docente.")
         return
-
-    if number == 2:
-        _activity_two_gallery()
 
     group_options = [item["group"] for item in results]
     selected = st.multiselect("Grupos o casos", group_options, default=group_options)
