@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "publication": {
-    "id": "v0004-029c4514dd",
-    "version": 4,
+    "id": "v0005-9375f08105",
+    "version": 5,
     "status": "published",
-    "prepared_at": "2026-10-26T14:42:03.204819Z",
-    "published_at": "2026-10-26T14:42:03.425500Z"
+    "prepared_at": "2026-10-27T17:13:08.516523Z",
+    "published_at": "2026-10-28T02:22:50.682529Z"
   },
   "laboratory": {
     "title": "Laboratorio de Decisiones con IA",
@@ -451,6 +451,95 @@
             "action": "Una política interna tendría que fijar la responsabilidad humana de forma explícita.",
             "audience_adaptation": "Explique brevemente qué cambió en el lenguaje, foco o acción: La Gerencia de Operaciones debe asegurar que, antes de automatizar con IA, existan procedimientos claros, responsables definidos y registros que permitan verificar qué se hizo y quién lo autorizó, con supervisión humana durante el proceso.",
             "human_correction": "Se realizó un contraste manual con el corpus para verificar que las afirmaciones del análisis correspondieran al contenido de los comentarios BBC-022, CNBC-001 y CNBC-003, distinguiendo las opiniones de los autores de las interpretaciones del equipo. Importante: use IDs reales del corpus. Distinga la opinión que matiza de la evidencia y declare qué información aún falta comprobar."
+          }
+        },
+        {
+          "result_id": "resultado-81b8147abce02a93",
+          "group": "Grupo 3",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 5,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "La disposición a usar agentes aparece cuando la exposición está acotada y las reglas las definen personas: un comentarista probaría con 5 % o 10 % de su portafolio; otro propone fijar reglas para que la IA las siga; otro asigna a la IA un rol de apoyo, no de decisión.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Probar agentes de IA durante 60 días en tareas internas, revisables y reversibles, con un responsable por tarea, permisos mínimos y medición contra la línea base: así sabremos si ahorran tiempo sin aumentar el riesgo.",
+              "limitations": "BBC-023 sostiene, a partir de lo dicho en el video, que en una prueba sin acceso a internet el agente encontró un camino; BBC-015 afirma que hizo lo necesario para cumplir su tarea pese a las salvaguardas. Son opiniones, no hechos comprobados, pero indican que acotar el piloto no basta: los permisos y accesos deben definirse antes de operar."
+            },
+            {
+              "description": "Antes de usar un agente hay que definir quién responde por sus errores: un comentario pide especificar quién, qué, cuándo, dónde y cómo, porque «si todos somos vagamente responsables, nadie lo es»; otro pregunta a quién demandar si el agente pierde el dinero.",
+              "category": "hallazgo_comunicado",
+              "interpretation": "Probar agentes de IA durante 60 días en tareas internas, revisables y reversibles, con un responsable por tarea, permisos mínimos y medición contra la línea base: así sabremos si ahorran tiempo sin aumentar el riesgo.",
+              "limitations": "Los 111 comentarios son opiniones públicas sobre trading y un incidente de ciberseguridad; no contienen datos de productividad ni representan a la organización. Falta comprobar: tiempos, calidad y trabajos actuales de las tareas candidatas (línea base); uso actual de IA en la organización; y clasificación de la información que manejaría el agente."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-044",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-057",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-078",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "BBC",
+              "origin_id": "BBC-022",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "CNBC",
+              "origin_id": "CNBC-039",
+              "verification": "requiere_revision_docente"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "C",
+              "recommendation": "1. Antes del día 1: seleccionar tareas internas, revisables y reversibles, y registrar su línea base de tiempo, calidad y retrabajo. 2. Asignar un responsable por tarea y permisos mínimos, sin acceso a clientes ni a sistemas externos. 3. Revisar cada salida del agente antes de usarla y registrar la revisión. 4. Días 30 y 60: continuar si el 100 % de las salidas tiene revisión y responsable, no hay incidentes ni acciones fuera de permisos, y el tiempo neto por tarea es igual o menor que la línea base en más de la mitad de las tareas. Cualquier incidente suspende el piloto.",
+              "justification": "Probar agentes de IA durante 60 días en tareas internas, revisables y reversibles, con un responsable por tarea, permisos mínimos y medición contra la línea base: así sabremos si ahorran tiempo sin aumentar el riesgo.",
+              "risks": "BBC-023 sostiene, a partir de lo dicho en el video, que en una prueba sin acceso a internet el agente encontró un camino; BBC-015 afirma que hizo lo necesario para cumplir su tarea pese a las salvaguardas. Son opiniones, no hechos comprobados, pero indican que acotar el piloto no basta: los permisos y accesos deben definirse antes de operar.",
+              "review_conditions": "Herramienta utilizada y corrección, verificación o ajuste realizado: Claude Opus 5.5 (Anthropic). Todos los IDs corresponden a comentarios verificados en el CSV y validados por el equipo en la Clase 1. Correcciones mantenidas: se excluyó CNBC-021 (registro dañado) y se corrigió la paráfrasis de BBC-022, que añadía «por qué». Ajuste: la ficha se redactó con apoyo de IA, la ficha del ejercicio práctica N° 1 y el equipo la revisó.",
+              "missing_data": "Los 111 comentarios son opiniones públicas sobre trading y un incidente de ciberseguridad; no contienen datos de productividad ni representan a la organización. Falta comprobar: tiempos, calidad y trabajos actuales de las tareas candidatas (línea base); uso actual de IA en la organización; y clasificación de la información que manejaría el agente."
+            }
+          ],
+          "activity_data": {
+            "audience": "operaciones",
+            "audience_family": "comite_directivo",
+            "alternative": "C",
+            "central_message": "Probar agentes de IA durante 60 días en tareas internas, revisables y reversibles, con un responsable por tarea, permisos mínimos y medición contra la línea base: así sabremos si ahorran tiempo sin aumentar el riesgo.",
+            "finding_1": "La disposición a usar agentes aparece cuando la exposición está acotada y las reglas las definen personas: un comentarista probaría con 5 % o 10 % de su portafolio; otro propone fijar reglas para que la IA las siga; otro asigna a la IA un rol de apoyo, no de decisión.",
+            "references_1": [
+              "CNBC-044",
+              "CNBC-057",
+              "CNBC-078"
+            ],
+            "finding_2": "Antes de usar un agente hay que definir quién responde por sus errores: un comentario pide especificar quién, qué, cuándo, dónde y cómo, porque «si todos somos vagamente responsables, nadie lo es»; otro pregunta a quién demandar si el agente pierde el dinero.",
+            "references_2": [
+              "BBC-022",
+              "CNBC-039"
+            ],
+            "nuance": "BBC-023 sostiene, a partir de lo dicho en el video, que en una prueba sin acceso a internet el agente encontró un camino; BBC-015 afirma que hizo lo necesario para cumplir su tarea pese a las salvaguardas. Son opiniones, no hechos comprobados, pero indican que acotar el piloto no basta: los permisos y accesos deben definirse antes de operar.",
+            "uncertainty": "Los 111 comentarios son opiniones públicas sobre trading y un incidente de ciberseguridad; no contienen datos de productividad ni representan a la organización. Falta comprobar: tiempos, calidad y trabajos actuales de las tareas candidatas (línea base); uso actual de IA en la organización; y clasificación de la información que manejaría el agente.",
+            "action": "1. Antes del día 1: seleccionar tareas internas, revisables y reversibles, y registrar su línea base de tiempo, calidad y retrabajo. 2. Asignar un responsable por tarea y permisos mínimos, sin acceso a clientes ni a sistemas externos. 3. Revisar cada salida del agente antes de usarla y registrar la revisión. 4. Días 30 y 60: continuar si el 100 % de las salidas tiene revisión y responsable, no hay incidentes ni acciones fuera de permisos, y el tiempo neto por tarea es igual o menor que la línea base en más de la mitad de las tareas. Cualquier incidente suspende el piloto.",
+            "audience_adaptation": "Para Operaciones, el foco pasa a la ejecución: qué tareas, quién revisa, qué se mide y cuándo se detiene el piloto. El lenguaje es operativo (línea base, tiempo neto, retrabajo, permisos) y la acción se expresa en pasos con plazos.",
+            "human_correction": "Herramienta utilizada y corrección, verificación o ajuste realizado: Claude Opus 5.5 (Anthropic). Todos los IDs corresponden a comentarios verificados en el CSV y validados por el equipo en la Clase 1. Correcciones mantenidas: se excluyó CNBC-021 (registro dañado) y se corrigió la paráfrasis de BBC-022, que añadía «por qué». Ajuste: la ficha se redactó con apoyo de IA, la ficha del ejercicio práctica N° 1 y el equipo la revisó."
           }
         }
       ]

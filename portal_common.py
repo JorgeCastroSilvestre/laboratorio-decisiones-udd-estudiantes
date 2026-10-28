@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime
 from html import escape
 from pathlib import Path
@@ -12,12 +13,6 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
 PUBLICATION_PATH = ROOT / "data" / "publication.json"
-ACTIVITY_02_GALLERY = [
-    {"label": "Grupo 1 · Infografía", "path": ROOT / "assets" / "activity_02" / "grupo_1_pagina_2.png"},
-    {"label": "Grupo 2 · Infografía", "path": ROOT / "assets" / "activity_02" / "grupo_2_pagina_2.png"},
-    {"label": "Grupo 1 · Ficha asociada", "path": ROOT / "assets" / "activity_02" / "grupo_1_pagina_1.png"},
-    {"label": "Grupo 2 · Ficha asociada", "path": ROOT / "assets" / "activity_02" / "grupo_2_pagina_1.png"},
-]
 VISIBLE_ACTIVITY_NUMBERS = (1, 2, 3, 5)
 
 INDICATOR_LABELS = {
@@ -113,7 +108,16 @@ def _activity_two_card(payload: dict) -> None:
 
 def _activity_two_gallery() -> None:
     """Put the submitted infographics before the analytical summary."""
-    available = [item for item in ACTIVITY_02_GALLERY if item["path"].exists()]
+    assets = ROOT / "assets" / "activity_02"
+    available = []
+    for path in assets.glob("grupo_*_pagina_*.png"):
+        match = re.fullmatch(r"grupo_(\d+)_pagina_([12])\.png", path.name)
+        if not match:
+            continue
+        group_number, page_number = (int(value) for value in match.groups())
+        label_type = "Infografía" if page_number == 2 else "Ficha asociada"
+        available.append({"label": f"Grupo {group_number} · {label_type}", "path": path, "group": group_number, "page": page_number})
+    available.sort(key=lambda item: (0 if item["page"] == 2 else 1, item["group"]))
     if not available:
         return
 
@@ -122,17 +126,19 @@ def _activity_two_gallery() -> None:
     if "activity_02_selected_infographic" not in st.session_state:
         st.session_state.activity_02_selected_infographic = available[0]["label"]
 
-    columns = st.columns(min(4, len(available)))
-    for column, item in zip(columns, available):
-        with column:
-            st.image(str(item["path"]), caption=item["label"], width="stretch")
-            if st.button(
-                "Ampliar",
-                key=f"open_{item['label']}",
-                width="stretch",
-                type="primary" if st.session_state.activity_02_selected_infographic == item["label"] else "secondary",
-            ):
-                st.session_state.activity_02_selected_infographic = item["label"]
+    for start in range(0, len(available), 4):
+        row = available[start : start + 4]
+        columns = st.columns(4)
+        for column, item in zip(columns, row):
+            with column:
+                st.image(str(item["path"]), caption=item["label"], width="stretch")
+                if st.button(
+                    "Ampliar",
+                    key=f"open_{item['label']}",
+                    width="stretch",
+                    type="primary" if st.session_state.activity_02_selected_infographic == item["label"] else "secondary",
+                ):
+                    st.session_state.activity_02_selected_infographic = item["label"]
 
     selected = next(
         (item for item in available if item["label"] == st.session_state.activity_02_selected_infographic),
