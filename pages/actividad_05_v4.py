@@ -215,7 +215,7 @@ status_cols[1].metric("Decisión DESPUÉS", after_saved.get("winner", "Pendiente
 
 default_code = after_saved.get("winner") if after_saved else after_winner
 default_code = default_code or "D"
-with st.form("a5v4_sheet"):
+with st.form("a5v4_sheet_form"):
     chosen = st.selectbox("Estrategia recomendada", list(ALTERNATIVES), index=list(ALTERNATIVES).index(default_code), format_func=lambda code: f"{code} · {ALTERNATIVES[code]['name']}")
     evidence = st.text_area("Dos evidencias que respaldan la decisión")
     contrary = st.text_area("Evidencia o límite que la cuestiona")
