@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "publication": {
-    "id": "v0007-e0fb80f9dc",
-    "version": 7,
+    "id": "v0008-e6c70005e0",
+    "version": 8,
     "status": "published",
-    "prepared_at": "2026-10-29T02:26:27.708849Z",
-    "published_at": "2026-10-29T02:26:27.881465Z"
+    "prepared_at": "2026-10-29T03:07:48.888462Z",
+    "published_at": "2026-10-29T03:07:49.081342Z"
   },
   "laboratory": {
     "title": "Laboratorio de Decisiones con IA",
@@ -1350,6 +1350,25 @@
         {
           "result_id": "resultado-c277a491b5a10b7e",
           "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 0,
+            "evidence_items": 0,
+            "decisions": 0
+          },
+          "findings": [],
+          "evidence": [],
+          "decisions": []
+        },
+        {
+          "result_id": "resultado-3ff691097ba72f17",
+          "group": "Grupo 4",
           "sections": [
             "decisiones",
             "evidencias",
