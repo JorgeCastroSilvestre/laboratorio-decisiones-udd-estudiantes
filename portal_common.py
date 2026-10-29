@@ -276,11 +276,11 @@ def _activity_two_analysis(results: list[dict]) -> None:
 
 
 def _activity_three_carousel() -> None:
-    """Show the two submitted pages for each published group before the analysis."""
+    """Show only the two original evidence photographs for each published group."""
     assets = ROOT / "assets" / "activity_03"
     groups: dict[int, list[Path]] = {}
-    for path in assets.glob("grupo_*_pagina_*.png"):
-        match = re.fullmatch(r"grupo_(\d+)_pagina_(1|2)\.png", path.name)
+    for path in assets.glob("grupo_*_imagen_*.png"):
+        match = re.fullmatch(r"grupo_(\d+)_imagen_(1|2)\.png", path.name)
         if match:
             groups.setdefault(int(match.group(1)), []).append(path)
     complete = {number: sorted(paths) for number, paths in groups.items() if len(paths) >= 2}
@@ -297,18 +297,71 @@ def _activity_three_carousel() -> None:
         current = labels.index(st.session_state.get(state_key, labels[0]))
         st.session_state[state_key] = labels[(current + step) % len(labels)]
 
-    st.markdown("## Carrusel de fichas y evidencia visual")
-    st.caption("Recorre los grupos y compara la ficha ejecutiva con las dos fotografías seleccionadas por cada equipo.")
-    controls = st.columns([1, 4, 1])
-    controls[0].button("Anterior", key="activity_03_previous", on_click=move, args=(-1,), width="stretch")
-    selected = controls[1].selectbox("Grupo", labels, key=state_key, label_visibility="collapsed")
-    controls[2].button("Siguiente", key="activity_03_next", on_click=move, args=(1,), width="stretch")
+    st.markdown(
+        """
+        <style>
+        .visual-gallery-intro {
+            padding: 1.2rem 1.35rem;
+            border: 1px solid rgba(0, 141, 210, .24);
+            border-radius: 20px;
+            background: linear-gradient(125deg, rgba(0, 82, 147, .10), rgba(0, 169, 157, .08));
+            margin: .35rem 0 1rem;
+        }
+        .visual-gallery-intro strong { color: #005293; letter-spacing: .05em; }
+        .visual-gallery-intro span { color: #4e6575; }
+        .visual-evidence-label {
+            display: inline-block;
+            padding: .35rem .7rem;
+            margin: .2rem 0 .65rem;
+            border-radius: 999px;
+            background: #073b5c;
+            color: white;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+        [data-testid="stImage"] {
+            padding: .55rem;
+            border: 1px solid rgba(7, 59, 92, .14);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .88);
+            box-shadow: 0 16px 38px rgba(8, 45, 70, .13);
+        }
+        [data-testid="stImage"] img {
+            border-radius: 14px;
+            max-height: 520px;
+            object-fit: contain;
+            background: #edf5f8;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown("## Galería comparativa de evidencia visual")
+    st.markdown(
+        '<div class="visual-gallery-intro"><strong>DOS MIRADAS POR EQUIPO</strong><br>'
+        '<span>La primera imagen respalda la interpretación; la segunda la cuestiona, limita o matiza. '
+        'Usa el botón de pantalla completa para observar cada evidencia en detalle.</span></div>',
+        unsafe_allow_html=True,
+    )
+    controls = st.columns([1.1, 4.8, 1.1], vertical_alignment="bottom")
+    controls[0].button("← Anterior", key="activity_03_previous", on_click=move, args=(-1,), width="stretch")
+    selected = controls[1].selectbox("Equipo en revisión", labels, key=state_key)
+    controls[2].button("Siguiente →", key="activity_03_next", on_click=move, args=(1,), width="stretch")
     selected_number = int(selected.split()[-1])
     pages = complete[selected_number]
-    page_columns = st.columns(2)
-    for index, (column, path) in enumerate(zip(page_columns, pages[:2]), start=1):
+    current_position = numbers.index(selected_number) + 1
+    st.caption(f"{selected} · Equipo {current_position} de {len(numbers)}")
+    page_columns = st.columns(2, gap="large")
+    labels_by_position = [
+        ("Evidencia principal", "Imagen que respalda la interpretación del equipo"),
+        ("Evidencia de contraste", "Imagen que cuestiona, limita o matiza la lectura inicial"),
+    ]
+    for (column, path), (badge, caption) in zip(zip(page_columns, pages[:2]), labels_by_position):
         with column:
-            st.image(str(path), caption=f"{selected} · Página {index} de 2", width="stretch")
+            st.markdown(f'<span class="visual-evidence-label">{badge}</span>', unsafe_allow_html=True)
+            st.image(str(path), caption=caption, width="stretch")
     st.divider()
 
 
