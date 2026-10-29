@@ -275,6 +275,138 @@ def _activity_two_analysis(results: list[dict]) -> None:
     st.dataframe(table, hide_index=True, width="stretch")
 
 
+def _activity_three_carousel() -> None:
+    """Show the two submitted pages for each published group before the analysis."""
+    assets = ROOT / "assets" / "activity_03"
+    groups: dict[int, list[Path]] = {}
+    for path in assets.glob("grupo_*_pagina_*.png"):
+        match = re.fullmatch(r"grupo_(\d+)_pagina_(1|2)\.png", path.name)
+        if match:
+            groups.setdefault(int(match.group(1)), []).append(path)
+    complete = {number: sorted(paths) for number, paths in groups.items() if len(paths) >= 2}
+    if not complete:
+        return
+
+    numbers = sorted(complete)
+    labels = [f"Grupo {number}" for number in numbers]
+    state_key = "activity_03_carousel_group"
+    if st.session_state.get(state_key) not in labels:
+        st.session_state[state_key] = labels[0]
+
+    def move(step: int) -> None:
+        current = labels.index(st.session_state.get(state_key, labels[0]))
+        st.session_state[state_key] = labels[(current + step) % len(labels)]
+
+    st.markdown("## Carrusel de fichas y evidencia visual")
+    st.caption("Recorre los grupos y compara la ficha ejecutiva con las dos fotografías seleccionadas por cada equipo.")
+    controls = st.columns([1, 4, 1])
+    controls[0].button("Anterior", key="activity_03_previous", on_click=move, args=(-1,), width="stretch")
+    selected = controls[1].selectbox("Grupo", labels, key=state_key, label_visibility="collapsed")
+    controls[2].button("Siguiente", key="activity_03_next", on_click=move, args=(1,), width="stretch")
+    selected_number = int(selected.split()[-1])
+    pages = complete[selected_number]
+    page_columns = st.columns(2)
+    for index, (column, path) in enumerate(zip(page_columns, pages[:2]), start=1):
+        with column:
+            st.image(str(path), caption=f"{selected} · Página {index} de 2", width="stretch")
+    st.divider()
+
+
+def _load_activity_four_analysis() -> dict:
+    path = ROOT / "assets" / "activity_04" / "analysis.json"
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"groups": []}
+
+
+def _activity_four_dashboard(results: list[dict]) -> bool:
+    analysis = _load_activity_four_analysis()
+    published_groups = {item.get("group") for item in results}
+    groups = [item for item in analysis.get("groups", []) if item.get("group") in published_groups]
+    if not groups:
+        return False
+
+    options = [item["group"] for item in groups]
+    selected_group = st.selectbox("Trabajo publicado", options, key="activity_04_group")
+    selected = next(item for item in groups if item["group"] == selected_group)
+    periods = pd.DataFrame(selected["periods"]).sort_values("period")
+    latest = periods.iloc[-1]
+    previous = periods.iloc[-2] if len(periods) > 1 else latest
+
+    st.markdown(f"## {selected['pharmacy']} · lectura ejecutiva")
+    st.caption(f"{selected_group} · Alternativa final: {selected['alternative']}")
+    metrics = st.columns(4)
+    metrics[0].metric("NPS 2020", f"{float(previous['nps']):.1f}")
+    metrics[1].metric("NPS 2021", f"{float(latest['nps']):.1f}", f"{float(latest['nps'] - previous['nps']):+.1f}")
+    metrics[2].metric("Respuestas reales", int(periods["valid"].sum()))
+    metrics[3].metric("Alternativa", selected["alternative"].split("·", 1)[0].strip())
+
+    gauge = go.Figure(
+        go.Indicator(
+            mode="gauge+number+delta",
+            value=float(latest["nps"]),
+            number={"suffix": " pts", "font": {"size": 46, "color": "#081C2B"}},
+            delta={"reference": float(previous["nps"]), "valueformat": ".1f"},
+            title={"text": f"Tacómetro NPS · {int(latest['period'])}", "font": {"size": 22}},
+            gauge={
+                "axis": {"range": [-100, 100], "tickwidth": 1, "tickcolor": "#667987"},
+                "bar": {"color": "#005293", "thickness": 0.28},
+                "bgcolor": "white",
+                "borderwidth": 0,
+                "steps": [
+                    {"range": [-100, 0], "color": "#F7D6D8"},
+                    {"range": [0, 30], "color": "#FFE6B8"},
+                    {"range": [30, 70], "color": "#CDEFFC"},
+                    {"range": [70, 100], "color": "#CDEEDC"},
+                ],
+                "threshold": {"line": {"color": "#F29400", "width": 5}, "thickness": 0.8, "value": float(latest["nps"])},
+            },
+        )
+    )
+    gauge.update_layout(height=390, margin=dict(l=30, r=30, t=75, b=20), paper_bgcolor="rgba(0,0,0,0)")
+
+    sentiment = pd.DataFrame(selected["sentiment"])
+    sentiment_figure = px.bar(
+        sentiment,
+        x="period",
+        y="comments",
+        color="sentiment",
+        barmode="stack",
+        text_auto=True,
+        title="Sentimiento textual por período",
+        labels={"period": "Período", "comments": "Comentarios", "sentiment": "Sentimiento"},
+        color_discrete_map={"Positivo": "#00A99D", "Mixto / neutro": "#A9BBC7", "Negativo": "#E45B64"},
+    )
+    sentiment_figure.update_layout(height=390, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+    charts = st.columns([1, 1.15])
+    charts[0].plotly_chart(gauge, use_container_width=True)
+    charts[1].plotly_chart(sentiment_figure, use_container_width=True)
+
+    topics = pd.DataFrame(selected["topics"])
+    topic_figure = px.bar(
+        topics,
+        x="topic",
+        y="mentions",
+        color="period",
+        barmode="group",
+        text_auto=True,
+        title="Temas mencionados en los comentarios reales",
+        labels={"topic": "Tema", "mentions": "Menciones", "period": "Período"},
+        color_discrete_sequence=["#005293", "#F29400"],
+    )
+    topic_figure.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+    st.plotly_chart(topic_figure, use_container_width=True)
+
+    st.markdown("### De la evidencia a la decisión")
+    st.info(f"**Problema identificado.** {selected['problem']}")
+    st.success(f"**Recomendación.** {selected['recommendation']}")
+    st.warning(f"**Contraste y límite.** {selected['contrast']}")
+    st.caption(selected["evidence_note"])
+    st.caption(analysis.get("methodology", ""))
+    return True
+
+
 def _render_activity_data(number: int, payload: dict) -> None:
     if number == 2:
         _activity_two_card(payload)
@@ -285,15 +417,21 @@ def _render_activity_data(number: int, payload: dict) -> None:
 
 def render_activity_payload(data: dict, number: int, *, show_version: bool = True) -> None:
     activity = activity_by_number(data, number)
+    results = sorted(activity.get("results", []), key=lambda item: item.get("group", ""))
     student_welcome()
     hero(f"Actividad {number:02d} · Resultados publicados", activity["name"], activity.get("objective") or "Exploración de evidencia y toma de decisiones.")
     if number == 2:
         _activity_two_gallery()
-        _activity_two_analysis(sorted(activity.get("results", []), key=lambda item: item.get("group", "")))
+        _activity_two_analysis(results)
         if show_version:
             st.caption(f"Versión pública {data['publication'].get('version', 0)} · Actualizada: {formatted_date(data['publication'].get('published_at'))}")
         return
-    results = sorted(activity.get("results", []), key=lambda item: item.get("group", ""))
+    if number == 3:
+        _activity_three_carousel()
+    if number == 4 and _activity_four_dashboard(results):
+        if show_version:
+            st.caption(f"Versión pública {data['publication'].get('version', 0)} · Actualizada: {formatted_date(data['publication'].get('published_at'))}")
+        return
     if not results:
         st.info("Esta actividad aún no tiene resultados publicados.")
         st.caption("La información aparecerá después de la revisión y publicación docente.")

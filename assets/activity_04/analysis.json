@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "methodology": "Análisis descriptivo de 28 comentarios reales anonimizados de Doctor Ahorro. El sentimiento se clasifica con reglas visibles de palabras positivas y negativas; no es una medición clínica ni un modelo externo.",
+  "groups": [
+    {
+      "group": "Grupo 1",
+      "pharmacy": "Doctor Ahorro",
+      "alternative": "B · Disponibilidad y stock",
+      "periods": [
+        {"period": 2020, "valid": 14, "promoters": 6, "passives": 4, "detractors": 4, "nps": 14.3},
+        {"period": 2021, "valid": 14, "promoters": 6, "passives": 4, "detractors": 4, "nps": 14.3}
+      ],
+      "sentiment": [
+        {"period": 2020, "sentiment": "Positivo", "comments": 2},
+        {"period": 2020, "sentiment": "Mixto / neutro", "comments": 9},
+        {"period": 2020, "sentiment": "Negativo", "comments": 3},
+        {"period": 2021, "sentiment": "Positivo", "comments": 2},
+        {"period": 2021, "sentiment": "Mixto / neutro", "comments": 12},
+        {"period": 2021, "sentiment": "Negativo", "comments": 0}
+      ],
+      "topics": [
+        {"period": 2020, "topic": "Precio y promociones", "mentions": 10},
+        {"period": 2020, "topic": "Disponibilidad", "mentions": 8},
+        {"period": 2020, "topic": "Espera y atención", "mentions": 5},
+        {"period": 2020, "topic": "Acceso y canales", "mentions": 1},
+        {"period": 2021, "topic": "Precio y promociones", "mentions": 10},
+        {"period": 2021, "topic": "Disponibilidad", "mentions": 5},
+        {"period": 2021, "topic": "Espera y atención", "mentions": 4},
+        {"period": 2021, "topic": "Acceso y canales", "mentions": 2}
+      ],
+      "problem": "Algunos comentarios describen dificultades para encontrar productos y alternativas de menor precio; se requiere comprobar su alcance antes de intervenir el stock.",
+      "recommendation": "Mantener B como prioridad provisional y validar operacionalmente los quiebres: registrar productos solicitados no disponibles, verificar concordancia entre stock informado y físico y revisar semanalmente un piloto de cuatro semanas.",
+      "contrast": "Existe evidencia favorable en sentido contrario y el NPS permanece estable. Las muestras son pequeñas y los comentarios mezclan temas; el NPS no demuestra por sí solo ausencia o presencia de cambios en disponibilidad.",
+      "evidence_note": "NPS calculado solo con registros reales anonimizados. Los registros sintéticos docentes se excluyen de esta vista."
+    }
+  ]
+}
