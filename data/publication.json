@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "publication": {
-    "id": "v0006-f5c18d5605",
-    "version": 6,
+    "id": "v0007-e0fb80f9dc",
+    "version": 7,
     "status": "published",
-    "prepared_at": "2026-10-28T12:34:15.338374Z",
-    "published_at": "2026-10-28T12:34:15.555991Z"
+    "prepared_at": "2026-10-29T02:26:27.708849Z",
+    "published_at": "2026-10-29T02:26:27.881465Z"
   },
   "laboratory": {
     "title": "Laboratorio de Decisiones con IA",
@@ -1035,21 +1035,365 @@
       "name": "Interpretar Evidencia Visual",
       "description": "Ficha ejecutiva de dos páginas sobre movilidad en el eje Alameda o reducción de riesgo precordillerano.",
       "objective": "Separar observación e inferencia, contrastar hipótesis y recomendar una intervención con evidencia visual trazable.",
-      "results": []
+      "results": [
+        {
+          "result_id": "resultado-f6b78e8edd6c31fb",
+          "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 3,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Se observan viviendas junto a una calle cubierta por material de apariencia lodosa, restos y varios vehículos en distintas posiciones. La imagen no permite determinar el origen ni la secuencia del depósito.",
+              "category": "observacion_visual",
+              "interpretation": "• Hipótesis: La acumulación visible en B14 podría relacionarse con un evento hidrometeorológico, mientras condiciones locales de drenaje, obstrucción o exposición podrían haber modulado sus efectos. Son explicaciones por contrastar; la imagen no establece el desencadenante ni la contribución de cada factor.",
+              "limitations": "• Interpretación de IA registrada en el ejercicio con NotebookLM: “La presencia de barro y autos atrapados en las calles (B13, B14) demuestra de forma concluyente la falla total de la infraestructura de mitigación y la negligencia en la planificación municipal”. • Corrección del equipo: Las fotografías documentan una situación visible, pero no prueban fallas de diseño, negligencia ni causas específicas. Tampoco se puede asumir que B13 y B14 correspondan al mismo evento: faltan sus fichas de fuente en la matriz recibida. Se requieren antecedentes meteorológicos, técnicos y de mantenimiento."
+            },
+            {
+              "description": "Se observa un valle entre laderas, con abundante material rocoso en su fondo y cobertura blanca de apariencia nival en las cumbres. La matriz lo identifica como valle del Yeso, Cajón del Maipo (2016). No permite medir caudal ni anticipar una crecida.",
+              "category": "observacion_visual",
+              "interpretation": "• Hipótesis: La acumulación visible en B14 podría relacionarse con un evento hidrometeorológico, mientras condiciones locales de drenaje, obstrucción o exposición podrían haber modulado sus efectos. Son explicaciones por contrastar; la imagen no establece el desencadenante ni la contribución de cada factor.",
+              "limitations": "• Interpretación de IA registrada en el ejercicio con NotebookLM: “La presencia de barro y autos atrapados en las calles (B13, B14) demuestra de forma concluyente la falla total de la infraestructura de mitigación y la negligencia en la planificación municipal”. • Corrección del equipo: Las fotografías documentan una situación visible, pero no prueban fallas de diseño, negligencia ni causas específicas. Tampoco se puede asumir que B13 y B14 correspondan al mismo evento: faltan sus fichas de fuente en la matriz recibida. Se requieren antecedentes meteorológicos, técnicos y de mantenimiento."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "Caso B",
+              "origin_id": "B14",
+              "excerpt": "Se observan viviendas junto a una calle cubierta por material de apariencia lodosa, restos y varios vehículos en distintas posiciones. La imagen no permite determinar el origen ni la secuencia del depósito.",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "Caso B",
+              "origin_id": "B02",
+              "excerpt": "Se observa un valle entre laderas, con abundante material rocoso en su fondo y cobertura blanca de apariencia nival en las cumbres. La matriz lo identifica como valle del Yeso, Cajón del Maipo (2016). No permite medir caudal ni anticipar una crecida.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "Caso B",
+              "origin_id": "B03",
+              "verification": "coincidencia_exacta"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "E",
+              "recommendation": "• Alternativa recomendada: E. Estrategia combinada, gradual y priorizada por riesgo, con carácter preliminar. • Razón: Permite combinar evaluación de amenazas y exposición, monitoreo y preparación comunitaria, y seleccionar obras o medidas territoriales según evidencia técnica. A, B, C o D por separado cubren sólo parte del problema. Las imágenes no permiten determinar qué combinación es óptima ni ordenar sectores por riesgo. • Información pendiente y revisión: Completar lugar, fecha, autor y fuente de B13/B14; contrastar antecedentes meteorológicos, cartografía de amenaza y exposición, capacidad de drenaje e inspecciones. Revisaremos E al disponer de esos datos: si se identifica una necesidad localizada, ajustaremos la prioridad entre obras, monitoreo, evacuación o reducción de exposición.",
+              "justification": "• Hipótesis: La acumulación visible en B14 podría relacionarse con un evento hidrometeorológico, mientras condiciones locales de drenaje, obstrucción o exposición podrían haber modulado sus efectos. Son explicaciones por contrastar; la imagen no establece el desencadenante ni la contribución de cada factor.",
+              "risks": "• Interpretación de IA registrada en el ejercicio con NotebookLM: “La presencia de barro y autos atrapados en las calles (B13, B14) demuestra de forma concluyente la falla total de la infraestructura de mitigación y la negligencia en la planificación municipal”. • Corrección del equipo: Las fotografías documentan una situación visible, pero no prueban fallas de diseño, negligencia ni causas específicas. Tampoco se puede asumir que B13 y B14 correspondan al mismo evento: faltan sus fichas de fuente en la matriz recibida. Se requieren antecedentes meteorológicos, técnicos y de mantenimiento.",
+              "review_conditions": "• Alternativa recomendada: E. Estrategia combinada, gradual y priorizada por riesgo, con carácter preliminar. • Razón: Permite combinar evaluación de amenazas y exposición, monitoreo y preparación comunitaria, y seleccionar obras o medidas territoriales según evidencia técnica. A, B, C o D por separado cubren sólo parte del problema. Las imágenes no permiten determinar qué combinación es óptima ni ordenar sectores por riesgo. • Información pendiente y revisión: Completar lugar, fecha, autor y fuente de B13/B14; contrastar antecedentes meteorológicos, cartografía de amenaza y exposición, capacidad de drenaje e inspecciones. Revisaremos E al disponer de esos datos: si se identifica una necesidad localizada, ajustaremos la prioridad entre obras, monitoreo, evacuación o reducción de exposición.",
+              "missing_data": "• Alternativa recomendada: E. Estrategia combinada, gradual y priorizada por riesgo, con carácter preliminar. • Razón: Permite combinar evaluación de amenazas y exposición, monitoreo y preparación comunitaria, y seleccionar obras o medidas territoriales según evidencia técnica. A, B, C o D por separado cubren sólo parte del problema. Las imágenes no permiten determinar qué combinación es óptima ni ordenar sectores por riesgo. • Información pendiente y revisión: Completar lugar, fecha, autor y fuente de B13/B14; contrastar antecedentes meteorológicos, cartografía de amenaza y exposición, capacidad de drenaje e inspecciones. Revisaremos E al disponer de esos datos: si se identifica una necesidad localizada, ajustaremos la prioridad entre obras, monitoreo, evacuación o reducción de exposición."
+            }
+          ],
+          "activity_data": {
+            "case": "B",
+            "intervention": "E",
+            "support_photo": "B14",
+            "contrast_photo": "B03",
+            "observations": [
+              "Se observan viviendas junto a una calle cubierta por material de apariencia lodosa, restos y varios vehículos en distintas posiciones. La imagen no permite determinar el origen ni la secuencia del depósito.",
+              "Se observa un valle entre laderas, con abundante material rocoso en su fondo y cobertura blanca de apariencia nival en las cumbres. La matriz lo identifica como valle del Yeso, Cajón del Maipo (2016). No permite medir caudal ni anticipar una crecida."
+            ],
+            "interpretation": "• Hipótesis: La acumulación visible en B14 podría relacionarse con un evento hidrometeorológico, mientras condiciones locales de drenaje, obstrucción o exposición podrían haber modulado sus efectos. Son explicaciones por contrastar; la imagen no establece el desencadenante ni la contribución de cada factor.",
+            "bias": "",
+            "alternative_hypothesis": "• Hipótesis: La acumulación visible en B14 podría relacionarse con un evento hidrometeorológico, mientras condiciones locales de drenaje, obstrucción o exposición podrían haber modulado sus efectos. Son explicaciones por contrastar; la imagen no establece el desencadenante ni la contribución de cada factor.",
+            "human_correction": {
+              "texto": "• Interpretación de IA registrada en el ejercicio con NotebookLM: “La presencia de barro y autos atrapados en las calles (B13, B14) demuestra de forma concluyente la falla total de la infraestructura de mitigación y la negligencia en la planificación municipal”. • Corrección del equipo: Las fotografías documentan una situación visible, pero no prueban fallas de diseño, negligencia ni causas específicas. Tampoco se puede asumir que B13 y B14 correspondan al mismo evento: faltan sus fichas de fuente en la matriz recibida. Se requieren antecedentes meteorológicos, técnicos y de mantenimiento."
+            },
+            "justification": "• Alternativa recomendada: E. Estrategia combinada, gradual y priorizada por riesgo, con carácter preliminar. • Razón: Permite combinar evaluación de amenazas y exposición, monitoreo y preparación comunitaria, y seleccionar obras o medidas territoriales según evidencia técnica. A, B, C o D por separado cubren sólo parte del problema. Las imágenes no permiten determinar qué combinación es óptima ni ordenar sectores por riesgo. • Información pendiente y revisión: Completar lugar, fecha, autor y fuente de B13/B14; contrastar antecedentes meteorológicos, cartografía de amenaza y exposición, capacidad de drenaje e inspecciones. Revisaremos E al disponer de esos datos: si se identifica una necesidad localizada, ajustaremos la prioridad entre obras, monitoreo, evacuación o reducción de exposición.",
+            "pending_verification": "• Alternativa recomendada: E. Estrategia combinada, gradual y priorizada por riesgo, con carácter preliminar. • Razón: Permite combinar evaluación de amenazas y exposición, monitoreo y preparación comunitaria, y seleccionar obras o medidas territoriales según evidencia técnica. A, B, C o D por separado cubren sólo parte del problema. Las imágenes no permiten determinar qué combinación es óptima ni ordenar sectores por riesgo. • Información pendiente y revisión: Completar lugar, fecha, autor y fuente de B13/B14; contrastar antecedentes meteorológicos, cartografía de amenaza y exposición, capacidad de drenaje e inspecciones. Revisaremos E al disponer de esos datos: si se identifica una necesidad localizada, ajustaremos la prioridad entre obras, monitoreo, evacuación o reducción de exposición."
+          }
+        },
+        {
+          "result_id": "resultado-0ca7548c67674d4b",
+          "group": "Grupo 2",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 3,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "bajo una estructura elevada hay una ciclovía segregada con demarcación, usada por un ciclista, y una senda peatonal de tierra separada por pasto; en la calzada de la derecha hay una fila de vehículos con luces de freno encendidas.",
+              "category": "observacion_visual",
+              "interpretation": "Lectura inicial: «el problema es el exceso de autos». Alternativa: en A12, al menos en ese tramo y momento, la demora visible podría estar en el propio transporte público (buses agrupados en semáforos o paradas) y no solo en el auto particular. Si fuera así, convendría gestionar las paradas, las frecuencias y los semáforos, no solo restringir los autos. A05 muestra que la supresión de paradas ya se usa, pero se desconoce el motivo de ese caso, y no es suficiente para hacer una generalización sobre este punto.",
+              "limitations": "Interpretación de IA: «A13 y A14 demuestran una alta demanda diaria de ciclovías en Santiago». Corrección: son concentraciones nocturnas masivas, probablemente eventos o cicletadas. No muestran viajes cotidianos ni permiten medir demanda, y sin ficha no se puede afirmar que sean el mismo evento, fecha o lugar. Del mismo modo, A15 (autos detenidos) no tiene elementos visibles que la sitúen en Santiago, A09 y A10 son plano y render de proyecto (no registran lo ejecutado) y A01 y A07 muestran señalética de otra época que A05 y A08."
+            },
+            {
+              "description": "en una avenida con bandejón de palmeras, al menos siete buses (verdes, naranjos y uno rojo) aparecen alineados en las pistas de un costado, mientras en las demás pistas circulan autos más dispersos. Se puede inferir la definición de pistas exclusivas por el color de las líneas que las separan(amarillas) y como no son líneas continuas, en ese tramo pueden cambiarse de pista los autos particulares.",
+              "category": "observacion_visual",
+              "interpretation": "Lectura inicial: «el problema es el exceso de autos». Alternativa: en A12, al menos en ese tramo y momento, la demora visible podría estar en el propio transporte público (buses agrupados en semáforos o paradas) y no solo en el auto particular. Si fuera así, convendría gestionar las paradas, las frecuencias y los semáforos, no solo restringir los autos. A05 muestra que la supresión de paradas ya se usa, pero se desconoce el motivo de ese caso, y no es suficiente para hacer una generalización sobre este punto.",
+              "limitations": "Interpretación de IA: «A13 y A14 demuestran una alta demanda diaria de ciclovías en Santiago». Corrección: son concentraciones nocturnas masivas, probablemente eventos o cicletadas. No muestran viajes cotidianos ni permiten medir demanda, y sin ficha no se puede afirmar que sean el mismo evento, fecha o lugar. Del mismo modo, A15 (autos detenidos) no tiene elementos visibles que la sitúen en Santiago, A09 y A10 son plano y render de proyecto (no registran lo ejecutado) y A01 y A07 muestran señalética de otra época que A05 y A08."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "Caso A",
+              "origin_id": "A04",
+              "excerpt": "bajo una estructura elevada hay una ciclovía segregada con demarcación, usada por un ciclista, y una senda peatonal de tierra separada por pasto; en la calzada de la derecha hay una fila de vehículos con luces de freno encendidas.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "Caso A",
+              "origin_id": "A12",
+              "excerpt": "en una avenida con bandejón de palmeras, al menos siete buses (verdes, naranjos y uno rojo) aparecen alineados en las pistas de un costado, mientras en las demás pistas circulan autos más dispersos. Se puede inferir la definición de pistas exclusivas por el color de las líneas que las separan(amarillas) y como no son líneas continuas, en ese tramo pueden cambiarse de pista los autos particulares.",
+              "verification": "requiere_revision_docente"
+            },
+            {
+              "source": "Caso A",
+              "origin_id": "A08",
+              "verification": "coincidencia_exacta"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "E",
+              "recommendation": "E · Intervención focalizada con piloto de medición, aplicada a un tramo acotado del eje (por ejemplo, el sector que muestra A09), donde se prueba priorizar buses (B) y mejorar cruces (D) antes de escalar. Razón: la evidencia es fragmentaria y casi sin fechas. Solo A06 y A09 se pueden ubicar con certeza en la Alameda, y ninguna foto mide flujos ni tiempos de viaje. Un piloto genera esa medición y permite revisar la decisión. Por qué no las otras: A: A04 y A11 muestran ciclovías, pero no los tramos faltantes, y A13–A14 son eventos. B: A12 la apoya, pero no hay velocidades. C: A04 y A12 son instantes aislados y A15 no es ubicable. D: A11 y A06 sugieren cruces relevantes, pero la accesibilidad no está documentada. Ninguna se descarta: quedan como opciones a evaluar con lo que mida el piloto.",
+              "justification": "Lectura inicial: «el problema es el exceso de autos». Alternativa: en A12, al menos en ese tramo y momento, la demora visible podría estar en el propio transporte público (buses agrupados en semáforos o paradas) y no solo en el auto particular. Si fuera así, convendría gestionar las paradas, las frecuencias y los semáforos, no solo restringir los autos. A05 muestra que la supresión de paradas ya se usa, pero se desconoce el motivo de ese caso, y no es suficiente para hacer una generalización sobre este punto.",
+              "risks": "Interpretación de IA: «A13 y A14 demuestran una alta demanda diaria de ciclovías en Santiago». Corrección: son concentraciones nocturnas masivas, probablemente eventos o cicletadas. No muestran viajes cotidianos ni permiten medir demanda, y sin ficha no se puede afirmar que sean el mismo evento, fecha o lugar. Del mismo modo, A15 (autos detenidos) no tiene elementos visibles que la sitúen en Santiago, A09 y A10 son plano y render de proyecto (no registran lo ejecutado) y A01 y A07 muestran señalética de otra época que A05 y A08.",
+              "review_conditions": "E · Intervención focalizada con piloto de medición, aplicada a un tramo acotado del eje (por ejemplo, el sector que muestra A09), donde se prueba priorizar buses (B) y mejorar cruces (D) antes de escalar. Razón: la evidencia es fragmentaria y casi sin fechas. Solo A06 y A09 se pueden ubicar con certeza en la Alameda, y ninguna foto mide flujos ni tiempos de viaje. Un piloto genera esa medición y permite revisar la decisión. Por qué no las otras: A: A04 y A11 muestran ciclovías, pero no los tramos faltantes, y A13–A14 son eventos. B: A12 la apoya, pero no hay velocidades. C: A04 y A12 son instantes aislados y A15 no es ubicable. D: A11 y A06 sugieren cruces relevantes, pero la accesibilidad no está documentada. Ninguna se descarta: quedan como opciones a evaluar con lo que mida el piloto.",
+              "missing_data": "E · Intervención focalizada con piloto de medición, aplicada a un tramo acotado del eje (por ejemplo, el sector que muestra A09), donde se prueba priorizar buses (B) y mejorar cruces (D) antes de escalar. Razón: la evidencia es fragmentaria y casi sin fechas. Solo A06 y A09 se pueden ubicar con certeza en la Alameda, y ninguna foto mide flujos ni tiempos de viaje. Un piloto genera esa medición y permite revisar la decisión. Por qué no las otras: A: A04 y A11 muestran ciclovías, pero no los tramos faltantes, y A13–A14 son eventos. B: A12 la apoya, pero no hay velocidades. C: A04 y A12 son instantes aislados y A15 no es ubicable. D: A11 y A06 sugieren cruces relevantes, pero la accesibilidad no está documentada. Ninguna se descarta: quedan como opciones a evaluar con lo que mida el piloto."
+            }
+          ],
+          "activity_data": {
+            "case": "A",
+            "intervention": "E",
+            "support_photo": "A12",
+            "contrast_photo": "A08",
+            "observations": [
+              "bajo una estructura elevada hay una ciclovía segregada con demarcación, usada por un ciclista, y una senda peatonal de tierra separada por pasto; en la calzada de la derecha hay una fila de vehículos con luces de freno encendidas.",
+              "en una avenida con bandejón de palmeras, al menos siete buses (verdes, naranjos y uno rojo) aparecen alineados en las pistas de un costado, mientras en las demás pistas circulan autos más dispersos. Se puede inferir la definición de pistas exclusivas por el color de las líneas que las separan(amarillas) y como no son líneas continuas, en ese tramo pueden cambiarse de pista los autos particulares."
+            ],
+            "interpretation": "Lectura inicial: «el problema es el exceso de autos». Alternativa: en A12, al menos en ese tramo y momento, la demora visible podría estar en el propio transporte público (buses agrupados en semáforos o paradas) y no solo en el auto particular. Si fuera así, convendría gestionar las paradas, las frecuencias y los semáforos, no solo restringir los autos. A05 muestra que la supresión de paradas ya se usa, pero se desconoce el motivo de ese caso, y no es suficiente para hacer una generalización sobre este punto.",
+            "bias": "",
+            "alternative_hypothesis": "Lectura inicial: «el problema es el exceso de autos». Alternativa: en A12, al menos en ese tramo y momento, la demora visible podría estar en el propio transporte público (buses agrupados en semáforos o paradas) y no solo en el auto particular. Si fuera así, convendría gestionar las paradas, las frecuencias y los semáforos, no solo restringir los autos. A05 muestra que la supresión de paradas ya se usa, pero se desconoce el motivo de ese caso, y no es suficiente para hacer una generalización sobre este punto.",
+            "human_correction": {
+              "texto": "Interpretación de IA: «A13 y A14 demuestran una alta demanda diaria de ciclovías en Santiago». Corrección: son concentraciones nocturnas masivas, probablemente eventos o cicletadas. No muestran viajes cotidianos ni permiten medir demanda, y sin ficha no se puede afirmar que sean el mismo evento, fecha o lugar. Del mismo modo, A15 (autos detenidos) no tiene elementos visibles que la sitúen en Santiago, A09 y A10 son plano y render de proyecto (no registran lo ejecutado) y A01 y A07 muestran señalética de otra época que A05 y A08."
+            },
+            "justification": "E · Intervención focalizada con piloto de medición, aplicada a un tramo acotado del eje (por ejemplo, el sector que muestra A09), donde se prueba priorizar buses (B) y mejorar cruces (D) antes de escalar. Razón: la evidencia es fragmentaria y casi sin fechas. Solo A06 y A09 se pueden ubicar con certeza en la Alameda, y ninguna foto mide flujos ni tiempos de viaje. Un piloto genera esa medición y permite revisar la decisión. Por qué no las otras: A: A04 y A11 muestran ciclovías, pero no los tramos faltantes, y A13–A14 son eventos. B: A12 la apoya, pero no hay velocidades. C: A04 y A12 son instantes aislados y A15 no es ubicable. D: A11 y A06 sugieren cruces relevantes, pero la accesibilidad no está documentada. Ninguna se descarta: quedan como opciones a evaluar con lo que mida el piloto.",
+            "pending_verification": "E · Intervención focalizada con piloto de medición, aplicada a un tramo acotado del eje (por ejemplo, el sector que muestra A09), donde se prueba priorizar buses (B) y mejorar cruces (D) antes de escalar. Razón: la evidencia es fragmentaria y casi sin fechas. Solo A06 y A09 se pueden ubicar con certeza en la Alameda, y ninguna foto mide flujos ni tiempos de viaje. Un piloto genera esa medición y permite revisar la decisión. Por qué no las otras: A: A04 y A11 muestran ciclovías, pero no los tramos faltantes, y A13–A14 son eventos. B: A12 la apoya, pero no hay velocidades. C: A04 y A12 son instantes aislados y A15 no es ubicable. D: A11 y A06 sugieren cruces relevantes, pero la accesibilidad no está documentada. Ninguna se descarta: quedan como opciones a evaluar con lo que mida el piloto."
+          }
+        },
+        {
+          "result_id": "resultado-4b9b557cef979351",
+          "group": "Grupo 3",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 2,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "en un mismo corredor conviven una ciclovía con al menos un ciclista, un sendero de tierra usado por una peatona y una calzada con una fila de autos detenidos; al fondo se ven buses.",
+              "category": "observacion_visual",
+              "interpretation": "Que en A04 se vea un solo ciclista puede deberse a la hora y la estación (18:31, junio), a la continuidad de la red ciclista o a la seguridad percibida, y no a que la ciclovía carezca de utilidad.",
+              "limitations": "Interpretación inicial «La ausencia de ciclistas demuestra que la ciclovía no sirve» (ficha A04). Qué cambió tras revisar la evidencia La premisa es falsa según la propia imagen: en A04 aparece un ciclista. Aun sin él, una fotografía aislada no mide uso. Formulación corregida A04 muestra uso ciclista en un momento puntual. Evaluar la ciclovía requiere conteos por hora y día, datos de continuidad de la red y condiciones de seguridad. La fotografía fue tomada el año 2013 y no necesariamente corresponde al uso actual de la ciclovía."
+            },
+            {
+              "description": "un bus articulado Red, con letrero «405 Cantagallo», circula por una calle residencial de dos pistas, con autos estacionados y poco tránsito visible en ese momento.",
+              "category": "observacion_visual",
+              "interpretation": "Que en A04 se vea un solo ciclista puede deberse a la hora y la estación (18:31, junio), a la continuidad de la red ciclista o a la seguridad percibida, y no a que la ciclovía carezca de utilidad.",
+              "limitations": "Interpretación inicial «La ausencia de ciclistas demuestra que la ciclovía no sirve» (ficha A04). Qué cambió tras revisar la evidencia La premisa es falsa según la propia imagen: en A04 aparece un ciclista. Aun sin él, una fotografía aislada no mide uso. Formulación corregida A04 muestra uso ciclista en un momento puntual. Evaluar la ciclovía requiere conteos por hora y día, datos de continuidad de la red y condiciones de seguridad. La fotografía fue tomada el año 2013 y no necesariamente corresponde al uso actual de la ciclovía."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "Caso A",
+              "origin_id": "A04",
+              "excerpt": "en un mismo corredor conviven una ciclovía con al menos un ciclista, un sendero de tierra usado por una peatona y una calzada con una fila de autos detenidos; al fondo se ven buses.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "Caso A",
+              "origin_id": "A08",
+              "excerpt": "un bus articulado Red, con letrero «405 Cantagallo», circula por una calle residencial de dos pistas, con autos estacionados y poco tránsito visible en ese momento.",
+              "verification": "coincidencia_exacta"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "E",
+              "recommendation": "Alternativa E (intervenciones focalizadas y piloto de medición), aplicada a medidas de integración multimodal y cruces (D) en el corredor Pajaritos, Maipú. Razón: el corredor de A04 reúne ciclovía, circulación peatonal, calzada, buses y el viaducto del Metro, y conecta Maipú con el eje Alameda. Ninguna imagen mide demanda ni causas, por lo que la evidencia no permite optar con fundamento por A, B o C. Un piloto acotado en accesos, cruces y conexiones permite intervenir de forma revisable y construir la línea base que hoy falta. Condición declarada: la evidencia del corredor es de 2013. La recomendación se mantiene, condicionada a verificar que el corredor conserve las características observadas; si no las conserva, el piloto debe reubicarse o rediseñarse.",
+              "justification": "Que en A04 se vea un solo ciclista puede deberse a la hora y la estación (18:31, junio), a la continuidad de la red ciclista o a la seguridad percibida, y no a que la ciclovía carezca de utilidad.",
+              "risks": "Interpretación inicial «La ausencia de ciclistas demuestra que la ciclovía no sirve» (ficha A04). Qué cambió tras revisar la evidencia La premisa es falsa según la propia imagen: en A04 aparece un ciclista. Aun sin él, una fotografía aislada no mide uso. Formulación corregida A04 muestra uso ciclista en un momento puntual. Evaluar la ciclovía requiere conteos por hora y día, datos de continuidad de la red y condiciones de seguridad. La fotografía fue tomada el año 2013 y no necesariamente corresponde al uso actual de la ciclovía.",
+              "review_conditions": "Alternativa E (intervenciones focalizadas y piloto de medición), aplicada a medidas de integración multimodal y cruces (D) en el corredor Pajaritos, Maipú. Razón: el corredor de A04 reúne ciclovía, circulación peatonal, calzada, buses y el viaducto del Metro, y conecta Maipú con el eje Alameda. Ninguna imagen mide demanda ni causas, por lo que la evidencia no permite optar con fundamento por A, B o C. Un piloto acotado en accesos, cruces y conexiones permite intervenir de forma revisable y construir la línea base que hoy falta. Condición declarada: la evidencia del corredor es de 2013. La recomendación se mantiene, condicionada a verificar que el corredor conserve las características observadas; si no las conserva, el piloto debe reubicarse o rediseñarse.",
+              "missing_data": "Alternativa E (intervenciones focalizadas y piloto de medición), aplicada a medidas de integración multimodal y cruces (D) en el corredor Pajaritos, Maipú. Razón: el corredor de A04 reúne ciclovía, circulación peatonal, calzada, buses y el viaducto del Metro, y conecta Maipú con el eje Alameda. Ninguna imagen mide demanda ni causas, por lo que la evidencia no permite optar con fundamento por A, B o C. Un piloto acotado en accesos, cruces y conexiones permite intervenir de forma revisable y construir la línea base que hoy falta. Condición declarada: la evidencia del corredor es de 2013. La recomendación se mantiene, condicionada a verificar que el corredor conserve las características observadas; si no las conserva, el piloto debe reubicarse o rediseñarse."
+            }
+          ],
+          "activity_data": {
+            "case": "A",
+            "intervention": "E",
+            "support_photo": "A04",
+            "contrast_photo": "A08",
+            "observations": [
+              "en un mismo corredor conviven una ciclovía con al menos un ciclista, un sendero de tierra usado por una peatona y una calzada con una fila de autos detenidos; al fondo se ven buses.",
+              "un bus articulado Red, con letrero «405 Cantagallo», circula por una calle residencial de dos pistas, con autos estacionados y poco tránsito visible en ese momento."
+            ],
+            "interpretation": "Que en A04 se vea un solo ciclista puede deberse a la hora y la estación (18:31, junio), a la continuidad de la red ciclista o a la seguridad percibida, y no a que la ciclovía carezca de utilidad.",
+            "bias": "",
+            "alternative_hypothesis": "Que en A04 se vea un solo ciclista puede deberse a la hora y la estación (18:31, junio), a la continuidad de la red ciclista o a la seguridad percibida, y no a que la ciclovía carezca de utilidad.",
+            "human_correction": {
+              "texto": "Interpretación inicial «La ausencia de ciclistas demuestra que la ciclovía no sirve» (ficha A04). Qué cambió tras revisar la evidencia La premisa es falsa según la propia imagen: en A04 aparece un ciclista. Aun sin él, una fotografía aislada no mide uso. Formulación corregida A04 muestra uso ciclista en un momento puntual. Evaluar la ciclovía requiere conteos por hora y día, datos de continuidad de la red y condiciones de seguridad. La fotografía fue tomada el año 2013 y no necesariamente corresponde al uso actual de la ciclovía."
+            },
+            "justification": "Alternativa E (intervenciones focalizadas y piloto de medición), aplicada a medidas de integración multimodal y cruces (D) en el corredor Pajaritos, Maipú. Razón: el corredor de A04 reúne ciclovía, circulación peatonal, calzada, buses y el viaducto del Metro, y conecta Maipú con el eje Alameda. Ninguna imagen mide demanda ni causas, por lo que la evidencia no permite optar con fundamento por A, B o C. Un piloto acotado en accesos, cruces y conexiones permite intervenir de forma revisable y construir la línea base que hoy falta. Condición declarada: la evidencia del corredor es de 2013. La recomendación se mantiene, condicionada a verificar que el corredor conserve las características observadas; si no las conserva, el piloto debe reubicarse o rediseñarse.",
+            "pending_verification": "Alternativa E (intervenciones focalizadas y piloto de medición), aplicada a medidas de integración multimodal y cruces (D) en el corredor Pajaritos, Maipú. Razón: el corredor de A04 reúne ciclovía, circulación peatonal, calzada, buses y el viaducto del Metro, y conecta Maipú con el eje Alameda. Ninguna imagen mide demanda ni causas, por lo que la evidencia no permite optar con fundamento por A, B o C. Un piloto acotado en accesos, cruces y conexiones permite intervenir de forma revisable y construir la línea base que hoy falta. Condición declarada: la evidencia del corredor es de 2013. La recomendación se mantiene, condicionada a verificar que el corredor conserve las características observadas; si no las conserva, el piloto debe reubicarse o rediseñarse."
+          }
+        },
+        {
+          "result_id": "resultado-1f1730a9023fb591",
+          "group": "Grupo 4",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 2,
+            "evidence_items": 3,
+            "decisions": 1
+          },
+          "findings": [
+            {
+              "description": "Señal \"Parada suprimida\" en Av. Providencia (2021). Se leen el texto y los números de información de la red; el motivo de la supresión no es visible.",
+              "category": "observacion_visual",
+              "interpretation": "La supresión de la parada (A05) puede responder a reordenamiento de recorridos u obras, y no necesariamente a un empeoramiento del acceso. La fotografía no indica motivo ni paradas alternativas. Es una hipótesis por verificar.",
+              "limitations": "La IA afirmó: \"Más buses siempre reducen la congestión\". Corrección: un bus articulado en operación (A07) no muestra ocupación ni congestión; no permite afirmar ese efecto sin conteos de ocupación, frecuencia y velocidad comercial."
+            },
+            {
+              "description": "Bus articulado azul y blanco circulando por la Alameda (2013). No se observan ocupación, velocidad ni congestión.",
+              "category": "observacion_visual",
+              "interpretation": "La supresión de la parada (A05) puede responder a reordenamiento de recorridos u obras, y no necesariamente a un empeoramiento del acceso. La fotografía no indica motivo ni paradas alternativas. Es una hipótesis por verificar.",
+              "limitations": "La IA afirmó: \"Más buses siempre reducen la congestión\". Corrección: un bus articulado en operación (A07) no muestra ocupación ni congestión; no permite afirmar ese efecto sin conteos de ocupación, frecuencia y velocidad comercial."
+            }
+          ],
+          "evidence": [
+            {
+              "source": "Caso A",
+              "origin_id": "A05",
+              "excerpt": "Señal \"Parada suprimida\" en Av. Providencia (2021). Se leen el texto y los números de información de la red; el motivo de la supresión no es visible.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "Caso A",
+              "origin_id": "A07",
+              "excerpt": "Bus articulado azul y blanco circulando por la Alameda (2013). No se observan ocupación, velocidad ni congestión.",
+              "verification": "coincidencia_exacta"
+            },
+            {
+              "source": "Caso A",
+              "origin_id": "A04",
+              "verification": "coincidencia_exacta"
+            }
+          ],
+          "decisions": [
+            {
+              "alternative": "E",
+              "recommendation": "E · Piloto focalizado con medición en un tramo del eje Alameda–Providencia: conteos de ocupación, frecuencia y velocidad antes y después. Razón: las fotos no miden demanda, causalidad ni utilidad; la decisión entre ciclovías o buses debe esperar esos datos y es revisable.",
+              "justification": "La supresión de la parada (A05) puede responder a reordenamiento de recorridos u obras, y no necesariamente a un empeoramiento del acceso. La fotografía no indica motivo ni paradas alternativas. Es una hipótesis por verificar.",
+              "risks": "La IA afirmó: \"Más buses siempre reducen la congestión\". Corrección: un bus articulado en operación (A07) no muestra ocupación ni congestión; no permite afirmar ese efecto sin conteos de ocupación, frecuencia y velocidad comercial.",
+              "review_conditions": "E · Piloto focalizado con medición en un tramo del eje Alameda–Providencia: conteos de ocupación, frecuencia y velocidad antes y después. Razón: las fotos no miden demanda, causalidad ni utilidad; la decisión entre ciclovías o buses debe esperar esos datos y es revisable.",
+              "missing_data": "E · Piloto focalizado con medición en un tramo del eje Alameda–Providencia: conteos de ocupación, frecuencia y velocidad antes y después. Razón: las fotos no miden demanda, causalidad ni utilidad; la decisión entre ciclovías o buses debe esperar esos datos y es revisable."
+            }
+          ],
+          "activity_data": {
+            "case": "A",
+            "intervention": "E",
+            "support_photo": "A07",
+            "contrast_photo": "A04",
+            "observations": [
+              "Señal \"Parada suprimida\" en Av. Providencia (2021). Se leen el texto y los números de información de la red; el motivo de la supresión no es visible.",
+              "Bus articulado azul y blanco circulando por la Alameda (2013). No se observan ocupación, velocidad ni congestión."
+            ],
+            "interpretation": "La supresión de la parada (A05) puede responder a reordenamiento de recorridos u obras, y no necesariamente a un empeoramiento del acceso. La fotografía no indica motivo ni paradas alternativas. Es una hipótesis por verificar.",
+            "bias": "",
+            "alternative_hypothesis": "La supresión de la parada (A05) puede responder a reordenamiento de recorridos u obras, y no necesariamente a un empeoramiento del acceso. La fotografía no indica motivo ni paradas alternativas. Es una hipótesis por verificar.",
+            "human_correction": {
+              "texto": "La IA afirmó: \"Más buses siempre reducen la congestión\". Corrección: un bus articulado en operación (A07) no muestra ocupación ni congestión; no permite afirmar ese efecto sin conteos de ocupación, frecuencia y velocidad comercial."
+            },
+            "justification": "E · Piloto focalizado con medición en un tramo del eje Alameda–Providencia: conteos de ocupación, frecuencia y velocidad antes y después. Razón: las fotos no miden demanda, causalidad ni utilidad; la decisión entre ciclovías o buses debe esperar esos datos y es revisable.",
+            "pending_verification": "E · Piloto focalizado con medición en un tramo del eje Alameda–Providencia: conteos de ocupación, frecuencia y velocidad antes y después. Razón: las fotos no miden demanda, causalidad ni utilidad; la decisión entre ciclovías o buses debe esperar esos datos y es revisable."
+          }
+        }
+      ]
     },
     {
       "activity_number": 4,
       "name": "NPS Farmacia",
       "description": "Laboratorio de voz del cliente con dos períodos, análisis transparente y ficha ejecutiva.",
       "objective": "Transformar indicadores NPS y comentarios anonimizados en una recomendación revisable y trazable.",
-      "results": []
+      "results": [
+        {
+          "result_id": "resultado-c277a491b5a10b7e",
+          "group": "Grupo 1",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 0,
+            "evidence_items": 0,
+            "decisions": 0
+          },
+          "findings": [],
+          "evidence": [],
+          "decisions": []
+        }
+      ]
     },
     {
       "activity_number": 5,
       "name": "Simulador de Decisiones",
       "description": "Simulador multicriterio en dos rondas para un caso ficticio de trabajo híbrido.",
       "objective": "Tomar una decisión ejecutiva bajo incertidumbre, declarar trade-offs y revisar la recomendación ante nueva evidencia.",
-      "results": []
+      "results": [
+        {
+          "result_id": "resultado-efbcf983db85893b",
+          "group": "Grupo 3",
+          "sections": [
+            "decisiones",
+            "evidencias",
+            "ficha_actividad",
+            "hallazgos",
+            "indicadores"
+          ],
+          "indicators": {
+            "findings": 0,
+            "evidence_items": 0,
+            "decisions": 0
+          },
+          "findings": [],
+          "evidence": [],
+          "decisions": []
+        }
+      ]
     }
   ]
 }

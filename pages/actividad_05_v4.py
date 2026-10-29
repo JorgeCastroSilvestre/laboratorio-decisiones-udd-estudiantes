@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import hashlib
+
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from streamlit_local_storage import _st_local_storage
 
+from activity5_draft import browser_draft_key, clear_activity_state, decode_draft, encode_draft, restore_draft
 from executive_pdf import build_decision_pdf
 from pharmacy_05_simulator import (
     ALTERNATIVES,
@@ -22,6 +26,29 @@ from pharmacy_05_simulator import (
 from portal_common import hero, student_welcome
 
 
+student_email = str(st.session_state.get("student_email", "vista_docente"))
+draft_key = browser_draft_key(student_email)
+storage_revision = int(st.session_state.get("activity5_storage_revision", 0))
+browser_items = _st_local_storage(method="getAll", key=f"a5v4_browser_storage_{storage_revision}", default=None)
+
+if browser_items is not None and not st.session_state.get("a5v4_browser_restored"):
+    restored_draft = decode_draft(browser_items.get(draft_key))
+    if restored_draft:
+        restored_items = restore_draft(st.session_state, restored_draft)
+        if st.session_state.get("a5v4_sheet") and not st.session_state.get("a5v4_pdf"):
+            st.session_state.a5v4_pdf = build_decision_pdf(st.session_state.a5v4_sheet)
+        st.session_state.a5v4_restored_notice = restored_items > 0
+    st.session_state.a5v4_browser_restored = True
+
+
+def save_browser_draft() -> None:
+    if not st.session_state.get("a5v4_identity"):
+        return
+    encoded = encode_draft(st.session_state)
+    save_key = hashlib.sha256(encoded.encode("utf-8")).hexdigest()[:16]
+    _st_local_storage(method="setItem", itemKey=draft_key, itemValue=encoded, key=f"a5v4_save_{save_key}", default=None)
+
+
 student_welcome()
 hero(
     "Actividad 05 · Decisiones estratégicas bajo incertidumbre",
@@ -30,6 +57,9 @@ hero(
 )
 
 st.caption("40 minutos · Flujo oficial: Simular → Guardar ANTES → incorporar evidencia → Guardar DESPUÉS → argumentar → descargar ficha")
+
+if st.session_state.pop("a5v4_restored_notice", False):
+    st.success("Recuperamos el avance guardado en este navegador. Puedes continuar desde donde quedaste.")
 
 if "a5v4_identity" not in st.session_state:
     st.markdown("## Identificación del equipo")
@@ -53,9 +83,11 @@ members = identity["members"]
 identity_cols = st.columns([3, 1])
 identity_cols[0].success(f"Sesión activa: **{team}** · Integrantes: {', '.join(members)}")
 if identity_cols[1].button("Cambiar equipo", width="stretch"):
-    for key in ("a5v4_identity", "a5v4_before", "a5v4_after", "a5v4_sheet", "a5v4_pdf"):
-        st.session_state.pop(key, None)
+    _st_local_storage(method="deleteItem", itemKey=draft_key, key="a5v4_delete_draft", default=None)
+    st.session_state.activity5_storage_revision = storage_revision + 1
+    clear_activity_state(st.session_state)
     st.rerun()
+st.caption("Avance guardado automáticamente en este navegador. Se recupera después de actualizar, volver a ingresar o publicar una nueva versión del sitio.")
 st.info("La evidencia es real y anonimizada; los nombres de farmacia son alias docentes. Los puntajes 1–5 del simulador son supuestos didácticos y no predicciones.")
 
 
@@ -216,12 +248,18 @@ status_cols[1].metric("Decisión DESPUÉS", after_saved.get("winner", "Pendiente
 default_code = after_saved.get("winner") if after_saved else after_winner
 default_code = default_code or "D"
 with st.form("a5v4_sheet_form"):
-    chosen = st.selectbox("Estrategia recomendada", list(ALTERNATIVES), index=list(ALTERNATIVES).index(default_code), format_func=lambda code: f"{code} · {ALTERNATIVES[code]['name']}")
-    evidence = st.text_area("Dos evidencias que respaldan la decisión")
-    contrary = st.text_area("Evidencia o límite que la cuestiona")
-    tradeoff = st.text_area("Principal trade-off")
-    change = st.text_area("Qué cambió después de la nueva evidencia")
-    condition = st.text_area("Condición para revisar o suspender")
+    chosen = st.selectbox(
+        "Estrategia recomendada",
+        list(ALTERNATIVES),
+        index=list(ALTERNATIVES).index(default_code),
+        format_func=lambda code: f"{code} · {ALTERNATIVES[code]['name']}",
+        key="a5v4_chosen",
+    )
+    evidence = st.text_area("Dos evidencias que respaldan la decisión", key="a5v4_final_evidence")
+    contrary = st.text_area("Evidencia o límite que la cuestiona", key="a5v4_final_contrary")
+    tradeoff = st.text_area("Principal trade-off", key="a5v4_final_tradeoff")
+    change = st.text_area("Qué cambió después de la nueva evidencia", key="a5v4_final_change")
+    condition = st.text_area("Condición para revisar o suspender", key="a5v4_final_condition")
     save_sheet = st.form_submit_button("Guardar ficha", type="primary", disabled=not (before_saved and after_saved))
 if save_sheet:
     record = {
@@ -255,4 +293,5 @@ if st.session_state.get("a5v4_pdf"):
 else:
     st.caption("Para habilitar la ficha: guarda ANTES, selecciona nueva evidencia, guarda DESPUÉS y completa la argumentación.")
 
-st.warning("Importante: el portal público mantiene los registros de la Actividad 05 durante la sesión abierta. No cierres la pestaña antes de descargar la ficha PDF.")
+save_browser_draft()
+st.info("El avance se conserva en este navegador y se recupera al volver a ingresar con el mismo correo. En otro computador o navegador, inicia una ficha nueva.")
